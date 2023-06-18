@@ -1,5 +1,5 @@
 import PublicLayout from "../components/layout/public";
-import IndexPage from "../components/pages/IndexPage";
+import IndexPage from "../components/pages/HomePage/IndexPage";
 
 
 export default function Home() {
