@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { NavbarItems } from "./../../../Constance/NavbarItems";
-import BasketLogo from "../../../shared/BasketLogo";
-import Logo from "../../../shared/Logo";
+import BasketLogo from "./../../../shared/BasketLogo";
+import Logo from "./../../../shared/Logo";
 
 
 

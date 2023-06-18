@@ -1,5 +1,5 @@
-import BasketLogo from "../../../shared/BasketLogo";
-import Logo from "../../../shared/Logo";
+import BasketLogo from "./../../../shared/BasketLogo";
+import Logo from "./../../../shared/Logo";
 
 
 
