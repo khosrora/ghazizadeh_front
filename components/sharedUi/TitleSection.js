@@ -3,13 +3,19 @@ import Link from "next/link";
 
 
 
-const TitleSection = ({ title, url }) => {
+const TitleSection = ({ title, url, span }) => {
+
     return (
-        <div className="w-full my-4 mt-12 flex justify-between items-center px-4">
+        <div className="w-full my-4 mt-24 flex justify-between items-center px-4">
             <p className="font-bold text-[19px]"> {title} </p>
-            <Link href={`${url}`}>
-                <span className="text-[#1A858C]"> مشاهده همه </span>
-            </Link>
+            {
+                !!span ?
+                    null
+                    :
+                    <Link href={`${url}`}>
+                        <span className="text-[#1A858C]"> مشاهده همه </span>
+                    </Link>
+            }
         </div>
     );
 }
