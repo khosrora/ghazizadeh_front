@@ -11,8 +11,6 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
-
   /* Center slide text vertically */
   display: flex;
   justify-content: center;
@@ -39,6 +37,9 @@
   width: 80%;
 }
 
+.swiper-slide-one {
+  width: 10%;
+}
 
 
 @layer {

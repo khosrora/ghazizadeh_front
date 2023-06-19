@@ -1,5 +1,5 @@
 import Image from "next/image";
-import TitleSection from "../../sharedUi/TitleSection";
+import CarAccessories from "./CarAccessories";
 import HeaderHomePage from "./HeaderHomePage";
 import SuggestSection from "./SuggestSection";
 
@@ -18,11 +18,8 @@ const IndexPage = () => {
                 </div>
                 <HeaderHomePage />
             </div>
-            <TitleSection
-                title="معرفی خودروها"
-                url="/"
-            />
             <SuggestSection />
+            <CarAccessories />
             <div className="h-96"></div>
         </div>
     );
