@@ -42,7 +42,7 @@ const CarAccessories = () => {
             >
                 {
                     [1, 2, 3, 4, 5, 6, 7, 8, 9].map(i =>
-                        <SwiperSlide>
+                        <SwiperSlide key={i}>
                             <div className="border border-[#CCCCCC] rounded-xl p-2 h-[148px] sm:h-[248px] lg:p-6">
                                 <div className="bg-[#222222] rounded-xl p-2 lg:mb-4 md:p-6">
                                     <Image
