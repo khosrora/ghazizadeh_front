@@ -1,5 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        'black-rgba': 'rgba(0, 0, 0, 0.48)',
+        'black-rgba-two': 'rgba(0, 0, 0, 0.78)',
+      },
+    },
+  },
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Accessories from "./AccessoriesMe";
+import BlogSection from "./BlogSection";
 import CarAccessories from "./CarAccessories";
 import Consumables from "./Consumables";
 import HeaderHomePage from "./HeaderHomePage";
@@ -24,8 +25,9 @@ const IndexPage = () => {
             <SuggestSection />
             <CarAccessories />
             <SpareParts />
-            <Consumables />
             <Accessories />
+            <Consumables />
+            <BlogSection />
             <div className="h-96"></div>
         </div>
     );
