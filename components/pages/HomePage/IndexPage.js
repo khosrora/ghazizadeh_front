@@ -28,7 +28,6 @@ const IndexPage = () => {
             <Accessories />
             <Consumables />
             <BlogSection />
-            <div className="h-96"></div>
         </div>
     );
 }
