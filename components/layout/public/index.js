@@ -1,6 +1,7 @@
 import Footer from "./footer/footer";
 import NavbarDesktop from "./header/NavbarDesktop";
 import NavbarPhone from "./header/NavbarPhone";
+import NavigationBottom from "./NavigationBottom";
 
 const PublicLayout = ({ children }) => {
     return (
@@ -13,6 +14,7 @@ const PublicLayout = ({ children }) => {
                 </div>
             </div>
             <Footer />
+            <NavigationBottom />
         </>
     );
 }
