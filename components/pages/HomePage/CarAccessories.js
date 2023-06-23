@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import Link from 'next/link';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
