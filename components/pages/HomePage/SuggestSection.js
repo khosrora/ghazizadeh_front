@@ -25,7 +25,7 @@ const SuggestSection = () => {
         <>
             <TitleSection
                 title="معرفی خودروها"
-                url="/"
+                url="/all_cars"
             />
             <Swiper
                 slidesPerView={screenSize > 980 ? 2 : "auto"}
