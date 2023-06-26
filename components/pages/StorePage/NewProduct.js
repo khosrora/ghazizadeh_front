@@ -1,30 +1,27 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
-import TitleSection from "../../sharedUi/TitleSection";
-import Link from "next/link";
-import BtnSwipper from "../../sharedUi/BtnSwipper";
+import BtnAddToBasket from '../../sharedUi/BtnAddToBasket';
+import TitleSection from '../../sharedUi/TitleSection';
+import BtnSwipper from '../../sharedUi/BtnSwipper';
 
-
-
-
-const BlogSection = () => {
+function NewProduct() {
 
     const swiperRef = useRef();
 
     return (
+
         <>
             <TitleSection
-                title="جدیدترین مقالات"
-                url="/"
+                title="لوازم جانبی خودرو"
             />
-            <div className="bg-[#FFFFFF] p-4 py-6 rounded-xl">
+            <div className="rounded-xl">
                 <Swiper
                     breakpoints={{
                         0: {
-                            slidesPerView: 1,
+                            slidesPerView: 2,
                         },
                         740: {
                             slidesPerView: 3,
@@ -36,6 +33,7 @@ const BlogSection = () => {
                             slidesPerView: 6,
                         },
                     }}
+                    className="mySwiper"
                     spaceBetween={10}
                     onBeforeInit={(swiper) => {
                         swiperRef.current = swiper;
@@ -45,16 +43,19 @@ const BlogSection = () => {
                         [1, 2, 3, 4, 5, 6, 7, 8, 9].map(i =>
                             <SwiperSlide key={i}>
                                 <div className="bg-[#F8F9FA] rounded-xl">
-                                    <figure className="px-4 pt-4">
-                                        <img src="https://azernews.az/media/2019/07/15/peugeot-301-facelift-3.jpg" alt="Shoes" className="rounded-xl" />
+                                    <figure className="p-2 h-[140px] md:h-[160px] lg:h-[220px]">
+                                        <img
+                                            src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/153/15318/15318081.jpg"
+                                            alt="Shoes"
+                                            className="rounded-xl object-contain" />
                                     </figure>
                                     <div className="card-body text-right w-full ">
-                                        <h2 className="card-title font-bold text-[16px]">جدیدترین ماشین تویوتا</h2>
-                                        <Link href="/">
-                                            <div className="card-actions">
-                                                <span className="btn bg-[#FFFFFF] w-full text-[#EA0028] rounded-full text-[12px]">مشاهده محصولات</span>
-                                            </div>
-                                        </Link>
+                                        <h2 className="card-title font-bold text-[14px]">لیفان</h2>
+                                        <p className="card-title font-bold text-[12px]">فرمون خودرو مدل TRETTF2</p>
+                                        <div className="card-actions flex justify-between items-center">
+                                            <span className='text-[12px]'>200/000 <span className='text-[8px]'>تومان</span></span>
+                                            <BtnAddToBasket />
+                                        </div>
                                     </div>
                                 </div>
                             </SwiperSlide>
@@ -69,7 +70,7 @@ const BlogSection = () => {
                 />
             </div>
         </>
-    );
+    )
 }
 
-export default BlogSection;
+export default NewProduct
