@@ -6,7 +6,8 @@ import Consumables from '../HomePage/Consumables'
 import SpareParts from '../HomePage/SpareParts'
 import AccessoriesMe from '../HomePage/AccessoriesMe'
 import NewProduct from './NewProduct'
-import PopularStore from './popularStore'
+import PopularStore from './PopularStore'
+
 
 function StoreIndex() {
     return (
