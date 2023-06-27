@@ -7,7 +7,7 @@ import BtnAddToBasket from '../../sharedUi/BtnAddToBasket';
 import TitleSection from '../../sharedUi/TitleSection';
 import BtnSwipper from '../../sharedUi/BtnSwipper';
 
-function PopularStore() {
+function PopularrStore() {
 
     const swiperRef = useRef();
 
@@ -73,4 +73,4 @@ function PopularStore() {
     )
 }
 
-export default PopularStore
+export default PopularrStore

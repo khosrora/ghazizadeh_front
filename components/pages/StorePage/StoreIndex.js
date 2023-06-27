@@ -6,7 +6,7 @@ import Consumables from '../HomePage/Consumables'
 import SpareParts from '../HomePage/SpareParts'
 import AccessoriesMe from '../HomePage/AccessoriesMe'
 import NewProduct from './NewProduct'
-import PopularStore from './PopularStore'
+import PopularrStore from './PopularrStore'
 
 
 function StoreIndex() {
@@ -18,7 +18,7 @@ function StoreIndex() {
             <NewProduct />
             <SpareParts />
             <Consumables />
-            <PopularStore />
+            <PopularrStore />
             <AccessoriesMe />
         </div>
     )
