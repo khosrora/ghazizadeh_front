@@ -1,8 +1,8 @@
 import React from 'react'
+import AddressCards from '../../../sharedUi/AddressCards'
 import Address from './Address'
 import DetailsFinallyPage from './DetailsFinallyPage'
 import FinallyPageCrumb from './FinallyPageCrumb'
-import TitleFinallyPage from './TitleFinallyPage'
 
 function FinallyPaymentIndex() {
   return (
@@ -10,7 +10,7 @@ function FinallyPaymentIndex() {
       <FinallyPageCrumb />
       <div className="lg:grid lg:grid-cols-6 lg:gap-x-10">
         <div className="lg:col-span-4">
-          <TitleFinallyPage />
+          <AddressCards />
           <Address />
         </div>
         <div className="lg:col-span-2">

@@ -1,5 +1,7 @@
+import DesktopHeader from "./header/DesktopHeader"
 import PhoneHeader from "./header/PhoneHeader"
 import SideBarDesktop from "./header/SideBarDesktop"
+import NavigationBottomDashboard from "./NavigationBottomDashboard"
 
 
 function LayoutDashboard({ children }) {
@@ -11,9 +13,13 @@ function LayoutDashboard({ children }) {
                     <SideBarDesktop />
                 </div>
                 <div className="col-span-9 lg:col-span-7 h-screen overflow-scroll p-4 max-w-7xl">
-                    {children}
+                    <DesktopHeader />
+                    <div className="lg:mt-8 mb-24">
+                        {children}
+                    </div>
                 </div>
             </div>
+            <NavigationBottomDashboard />
         </>
     )
 }

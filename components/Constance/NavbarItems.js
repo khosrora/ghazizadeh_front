@@ -1,26 +1,32 @@
 export const NavbarItems = [
     {
         id: 1,
-        title: 'خانه'
+        title: 'خانه',
+        url: '/'
     },
     {
         id: 2,
-        title: 'فروشگاه'
+        title: 'فروشگاه',
+        url: '/store'
     },
     {
         id: 3,
-        title: 'معرفی خودرو'
+        title: 'معرفی خودرو',
+        url: '/all_cars'
     },
     {
         id: 4,
-        title: 'درباره ما'
+        title: 'درباره ما',
+        url: '/about_us'
     },
     {
         id: 5,
-        title: 'ارتباط با ما'
+        title: 'ارتباط با ما',
+        url: '/contact_us'
     },
     {
         id: 6,
-        title: 'مقالات'
+        title: 'مقالات',
+        url: '/blogs'
     },
 ]

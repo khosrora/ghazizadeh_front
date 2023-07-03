@@ -1,13 +1,15 @@
 import React from 'react'
-import OrdersList from './OrdersList'
+import Address from '../../BasketPage/FinallyPage/Address'
+import TitleFinallyPage from '../../../sharedUi/AddressCards'
 import ProfileSection from './ProfileSection'
 
 function IndexPage() {
   return (
-    <div>
+    <>
       <ProfileSection />
-      <OrdersList />
-    </div>
+      <TitleFinallyPage />
+      <Address />
+    </>
   )
 }
 

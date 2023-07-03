@@ -3,10 +3,11 @@ import TitleSection from '../../../sharedUi/TitleSection'
 
 function ProfileSection() {
     return (
-        <>
+        <div className='mb-4'>
             <TitleSection
                 title='پروفایل'
                 url="/dashboard"
+                span
             />
             <div className="bg-[#FFFFFF] w-full rounded-lg p-4 space-y-4">
                 <div className="flex flex-col items-start space-y-4 justify-between lg:space-y-0 lg:flex-row  lg:items-center">
@@ -16,7 +17,7 @@ function ProfileSection() {
                     <p> کدملی: <span>3610786534</span> </p>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

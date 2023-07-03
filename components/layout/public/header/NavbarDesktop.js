@@ -17,7 +17,7 @@ const NavbarDesktop = () => {
                     {
                         NavbarItems.map(item =>
                             <li key={item.id}>
-                                <Link href="/">
+                                <Link href={item.url}>
                                     <p className="text-[14px]">{item.title}</p>
                                 </Link>
                             </li>

@@ -1,10 +1,10 @@
 import React from 'react'
 
-function TitleFinallyPage() {
+function AddressCards() {
     return (
         <>
             <div className="flex justify-between items-center">
-                <p> اطلاعات تحویل گیرنده </p>
+                <p> آدرس های شما </p>
                 <p onClick={() => window.my_modal_5.showModal()} className='text-xs text-[#28BAB1] cursor-pointer'> افزودن آدرس </p>
             </div>
             <dialog id="my_modal_5" className="modal">
@@ -64,4 +64,4 @@ function TitleFinallyPage() {
     )
 }
 
-export default TitleFinallyPage
+export default AddressCards
