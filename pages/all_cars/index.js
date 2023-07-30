@@ -6,11 +6,8 @@ import Cardscar from '../../components/pages/OtherPage/allCars/Cardscar'
 function index() {
     return (
         <PublicLayout>
-
             <BrandsIcons />
             <Cardscar />
-
-
         </PublicLayout>
     )
 }
