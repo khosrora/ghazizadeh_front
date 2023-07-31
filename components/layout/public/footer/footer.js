@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 
 
@@ -40,13 +41,9 @@ const Footer = () => {
                             <span className="font-bold text-[16px]">خدمات مشتریان</span>
                         </li>
                         <li>
+                            <Link href='/terms'>
                             <span className="text-[14px] text-[#444444]"> شرایط و قوانین </span>
-                        </li>
-                        <li>
-                            <span className="text-[14px] text-[#444444]"> نحوه ثبت سفارش </span>
-                        </li>
-                        <li>
-                            <span className="text-[14px] text-[#444444]"> شیوه های پرداخت </span>
+                            </Link>
                         </li>
                     </ul>
                 </li>
