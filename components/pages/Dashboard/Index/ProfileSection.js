@@ -27,9 +27,10 @@ function ProfileSection() {
                 span
             />
             <form onSubmit={handleSubmit(onSubmit)} className="bg-[#FFFFFF] w-full rounded-lg p-4 space-y-4">
-                <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                     <div className="form-control w-full">
                         <label className="label">
+                        <span className="label-text text-[14px]">نام ونام خانوادگی</span>
                         </label>
                         <input
                             type="text"
@@ -42,6 +43,7 @@ function ProfileSection() {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
+                        <span className="label-text text-[14px]">پست الکترونیک</span>
                         </label>
                         <input
                             type="text"
@@ -54,6 +56,7 @@ function ProfileSection() {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
+                        <span className="label-text text-[14px]">کد ملی</span>
                         </label>
                         <input
                             type="text"
@@ -65,7 +68,7 @@ function ProfileSection() {
                         />
                     </div>
                 </div>
-                <button disabled={load ? true : false} className='btn rounded-full text-white bg-[#EA0028] w-full'>
+                <button disabled={load ? true : false} className='btn rounded-full text-white bg-[#EA0028] w-full lg:w-1/4'>
                     {
                         load ? <span className="loading loading-spinner loading-xs"></span> : 'ویرایش / تکمیل اطلاعات'
                     }

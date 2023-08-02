@@ -1,6 +1,11 @@
 import React from 'react'
+import { useForm } from "react-hook-form";
 
 function AddressCards() {
+
+    const { register, handleSubmit } = useForm();
+    const onSubmit = data => console.log(data);
+
     return (
         <>
             <div className="flex justify-between items-center">
@@ -15,7 +20,9 @@ function AddressCards() {
                             <label className="label">
                                 <span className="label-text text-[14px]">نام ونام خانوادگی</span>
                             </label>
-                            <input type="text" placeholder="نام ونام خانواگی خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF] rounded-full" />
+                            <input
+                                {...register("firstName")}
+                                type="text" placeholder="نام ونام خانواگی خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF] rounded-full" />
                         </div>
 
 
@@ -23,28 +30,36 @@ function AddressCards() {
                             <label className="label">
                                 <span className="label-text text-[14px]">شماره تلفن</span>
                             </label>
-                            <input type="text" placeholder="شماره تلفن خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF] rounded-full" />
+                            <input
+                                {...register("firstName")}
+                                type="text" placeholder="شماره تلفن خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF] rounded-full" />
                         </div>
 
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text text-[14px]">کد پستی</span>
                             </label>
-                            <input type="text" placeholder="کد پستی خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF] rounded-full" />
+                            <input
+                                {...register("firstName")}
+                                type="text" placeholder="کد پستی خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF] rounded-full" />
                         </div>
 
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text text-[14px]">استان</span>
                             </label>
-                            <input type="text" placeholder="استان خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF] rounded-full" />
+                            <input
+                                {...register("firstName")}
+                                type="text" placeholder="استان خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF] rounded-full" />
                         </div>
 
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text text-[14px]">شهر</span>
                             </label>
-                            <input type="text" placeholder="شهر خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF] rounded-full" />
+                            <input
+                                {...register("firstName")}
+                                type="text" placeholder="شهر خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF] rounded-full" />
                         </div>
 
                     </div>
@@ -52,7 +67,9 @@ function AddressCards() {
                         <label className="label">
                             <span className="label-text text-[14px]">آدرس</span>
                         </label>
-                        <textarea type="text" placeholder="آدرس خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF]"></textarea>
+                        <textarea
+                            {...register("firstName")}
+                            type="text" placeholder="آدرس خود را وارد نمایید" className="input input-bordered w-full bg-[#FFFFFF]"></textarea>
                     </div>
                     <button className='btn rounded-full text-white bg-[#EA0028] w-full lg:w-1/6'>ثبت آدرس</button>
                 </form>

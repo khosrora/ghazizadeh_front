@@ -146,6 +146,7 @@ export const userSlice = createSlice({
     })
     builder.addCase(editProfileUser.rejected, (state) => {
       state.loadEditProfile = false;
+      errorMessage('لطفا دوباره امتحان کنید')
     })
 
   }
