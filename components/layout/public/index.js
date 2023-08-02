@@ -1,3 +1,7 @@
+import Cookies from "js-cookie";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../../store/user/UserSlice";
 import IndexAuth from "./AuthModal/IndexAuth";
 import Footer from "./footer/footer";
 import NavbarDesktop from "./header/NavbarDesktop";
@@ -5,6 +9,13 @@ import NavbarPhone from "./header/NavbarPhone";
 import NavigationBottom from "./NavigationBottom";
 
 const PublicLayout = ({ children }) => {
+
+    const dispatch = useDispatch();
+    const token = Cookies.get('car_ghazizadeh');
+    useEffect(() => {
+        if (token) dispatch(getUser(token))
+    }, [token])
+
     return (
         <>
             <IndexAuth />

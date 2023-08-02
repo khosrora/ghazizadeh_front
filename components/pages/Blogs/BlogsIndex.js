@@ -9,8 +9,8 @@ function BlogsIndex() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {
-                    [1, 2, 3, 4, 5, 6, 7, 8, 9].map(i =>
-                        <div className="bg-[#F8F9FA] rounded-xl">
+                    [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) =>
+                        <div key={index} className="bg-[#F8F9FA] rounded-xl">
                             <figure className="px-4 pt-4">
                                 <img src="https://azernews.az/media/2019/07/15/peugeot-301-facelift-3.jpg" alt="Shoes" className="rounded-xl" />
                             </figure>

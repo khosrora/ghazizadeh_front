@@ -9,7 +9,7 @@ const Logo = () => {
             width="94"
             height="100"
             className="mr-2 lg:mr-0"
-            alt="logo-copany"
+            alt="logo-company"
         />
     );
 }

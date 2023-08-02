@@ -1,22 +1,76 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import TitleSection from '../../../sharedUi/TitleSection'
 
+import { useForm } from "react-hook-form";
+import { editProfileUser } from '../../../../store/user/UserSlice';
+
+
 function ProfileSection() {
+
+    const dispatch = useDispatch();
+    const { user } = useSelector(state => state);
+    const userDetails = user.userDetails;
+    const load = user.loadEditProfile;
+
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        dispatch(editProfileUser(data))
+    };
+
+
     return (
         <div className='mb-4'>
             <TitleSection
-                title='پروفایل'
+                title='اطلاعات ثبت شده شما'
                 url="/dashboard"
                 span
             />
-            <div className="bg-[#FFFFFF] w-full rounded-lg p-4 space-y-4">
-                <div className="flex flex-col items-start space-y-4 justify-between lg:space-y-0 lg:flex-row  lg:items-center">
-                    <p>نام : <span>علی</span></p>
-                    <p>نام خانوادگی: <span>ریکی</span></p>
-                    <p>شماره موبایل: <span>09338973928</span></p>
-                    <p> کدملی: <span>3610786534</span> </p>
+            <form onSubmit={handleSubmit(onSubmit)} className="bg-[#FFFFFF] w-full rounded-lg p-4 space-y-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <div className="form-control w-full">
+                        <label className="label">
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="نام و نام خانوادگی خود را وارد کنید"
+                            className="input input-bordered w-full bg-[#FFFFFF] rounded-full"
+                            name='last_name'
+                            defaultValue={userDetails.last_name}
+                            {...register("last_name")}
+                        />
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="پست الکترونیک خود را وارد کنید"
+                            className="input input-bordered w-full bg-[#FFFFFF] rounded-full"
+                            name='email'
+                            defaultValue={userDetails.email}
+                            {...register("email")}
+                        />
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="کد ملی خود را وارد کنید"
+                            className="input input-bordered w-full bg-[#FFFFFF] rounded-full"
+                            name='national_code'
+                            defaultValue={userDetails.national_code}
+                            {...register("national_code")}
+                        />
+                    </div>
                 </div>
-            </div>
+                <button disabled={load ? true : false} className='btn rounded-full text-white bg-[#EA0028] w-full'>
+                    {
+                        load ? <span className="loading loading-spinner loading-xs"></span> : 'ویرایش / تکمیل اطلاعات'
+                    }
+                </button>
+            </form>
         </div>
     )
 }

@@ -1,9 +1,24 @@
+import Cookies from 'js-cookie'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { resetForm } from '../../../../store/user/UserSlice'
 import { itemsSidebar } from '../../../Constance/ItemsSideBar'
 import Logo from '../../../sharedUi/Logo'
 
 function SideBarDesktop() {
+
+    const router = useRouter();
+    const dispatch = useDispatch()
+
+    const handleLogout = () => {
+        Cookies.remove('car_ghazizadeh');
+        router.push("/");
+        dispatch(resetForm());
+    }
+
+
     return (
         <div className='w-full'>
             <Logo />
@@ -20,7 +35,7 @@ function SideBarDesktop() {
                         </Link>
                     )
                 }
-                <li className="w-full py-4 rounded-full px-2 cursor-pointer hover:bg-gray-100">
+                <li className="w-full py-4 rounded-full px-2 cursor-pointer hover:bg-gray-100" onClick={() => handleLogout()}>
                     <div className="flex justify-start items-center gap-x-4">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.4404 14.62L20.0004 12.06L17.4404 9.5" stroke="#292D32" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
