@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import Cookies from 'js-cookie'
 import http from '../../utils/httpService';
+import { errorMessage } from '../../utils/toast';
 
 
 
 const initialState = {
   loadAddress: false,
   address: [],
+  loadAddAddress: false
 }
 
 export const getAddressUser = createAsyncThunk(
@@ -21,7 +23,39 @@ export const getAddressUser = createAsyncThunk(
       })
       return res.data
     } catch (error) {
-      console.log(error);
+      rejected()
+    }
+  }
+)
+
+export const addAddress = createAsyncThunk(
+  'dashboard/addAddress', async (data) => {
+    try {
+
+      const token = Cookies.get('car_ghazizadeh');
+      const res = await http.post('/address/address/', data, {
+        headers: {
+          Authorization: "token " + token
+        }
+      })
+      return res.data
+    } catch (error) {
+      rejected()
+    }
+  }
+)
+
+export const deleteAddress = createAsyncThunk(
+  'dashboard/deleteAddress', async (id) => {
+    try {
+      const token = Cookies.get('car_ghazizadeh');
+      await http.delete(`/address/address/${id}`, {
+        headers: {
+          Authorization: "token " + token
+        }
+      })
+      return id
+    } catch (error) {
       rejected()
     }
   }
@@ -46,6 +80,34 @@ export const dashboardSlice = createSlice({
       state.address = [];
       state.loadAddress = false;
     })
+
+    builder.addCase(addAddress.pending, (state) => {
+      state.loadAddAddress = true;
+    })
+    builder.addCase(addAddress.fulfilled, (state, action) => {
+      state.loadAddAddress = false;
+      state.address.push(action.payload)
+    })
+    builder.addCase(addAddress.rejected, (state) => {
+      state.loadAddAddress = false;
+    })
+
+
+    builder.addCase(deleteAddress.pending, (state) => {
+      state.loadAddress = true;
+    })
+    builder.addCase(deleteAddress.fulfilled, (state, action) => {
+      state.loadAddress = false;
+      console.log(action.payload);
+      state.address = state.address.filter(item => item.id !== action.payload)
+      errorMessage('آدرس با موفقیت حذف شد')
+    })
+    builder.addCase(deleteAddress.rejected, (state) => {
+      state.loadAddress = false;
+    })
+
+
+
   }
 
 })

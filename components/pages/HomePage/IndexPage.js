@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Suspense } from "react";
 import Accessories from "./AccessoriesMe";
 import BlogSection from "./BlogSection";
 import CarAccessories from "./CarAccessories";
@@ -27,7 +28,9 @@ const IndexPage = () => {
             <SpareParts />
             <Accessories />
             <Consumables />
-            <BlogSection />
+            <Suspense>
+                <BlogSection />
+            </Suspense>
         </div>
     );
 }
