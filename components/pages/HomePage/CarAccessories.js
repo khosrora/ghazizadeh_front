@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -6,14 +6,28 @@ import 'swiper/css';
 import TitleSection from "../../sharedUi/TitleSection";
 import Image from "next/image";
 import BtnSwipper from "../../sharedUi/BtnSwipper";
+import http from "../../../utils/httpService";
 
 
 
 
 const CarAccessories = () => {
 
+    const [load, setLoad] = useState(true);
+    const [brands, setBrands] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            const res = await http.get('/brand/brands');
+            setBrands(res.data.results)
+            setLoad(false);
+        })()
+    }, [])
+
     const swiperRef = useRef();
 
+
+    if (load) return null;
     return (
         <>
             <TitleSection
@@ -29,11 +43,8 @@ const CarAccessories = () => {
                         slidesPerView: 5,
                     },
                     1200: {
-                        slidesPerView: 7,
-                    },
-                    2000: {
-                        slidesPerView: 10,
-                    },
+                        slidesPerView: 6,
+                    }
                 }}
                 spaceBetween={10}
                 onBeforeInit={(swiper) => {
@@ -41,17 +52,18 @@ const CarAccessories = () => {
                 }}
             >
                 {
-                    [1, 2, 3, 4, 5, 6, 7, 8, 9].map(i =>
+                    brands.map(i =>
                         <SwiperSlide key={i}>
-                            <div className="border border-[#CCCCCC] rounded-xl p-2 h-[148px] sm:h-[248px] lg:p-6">
-                                <div className="bg-[#222222] rounded-xl p-2 lg:mb-4 md:p-6">
-                                    <Image
-                                        src="/others/logo.png"
-                                        width="150"
-                                        height="150"
+                            <div className="border border-[#CCCCCC] rounded-xl p-2 h-[148px] sm:h-[248px] lg:p-6 flex flex-col justify-center items-center">
+                                <div className="bg-[#222222] h-1/2 w-full rounded-xl p-2 lg:mb-4 md:p-4 flex justify-center items-center">
+                                    <img
+                                        style={{ objectFit: 'contain' }}
+                                        src={i.logo}
                                     />
                                 </div>
-                                <span className="text-[16px] font-bold">رنو</span>
+                                <div className="h-1/2 w-full flex justify-center items-center">
+                                    <span className="text-[16px] font-bold">{i.title}</span>
+                                </div>
                             </div>
                         </SwiperSlide>
                     )

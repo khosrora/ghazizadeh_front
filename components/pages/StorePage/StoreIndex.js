@@ -9,11 +9,14 @@ import NewProduct from './NewProduct'
 import PopularrStore from './PopularrStore'
 
 
-function StoreIndex() {
+function StoreIndex({ props }) {
+
+
+
     return (
         <div>
             <SearchBar />
-            <BannerStore />
+            <BannerStore banners={props.banners} />
             <CarAccessories />
             <NewProduct />
             <SpareParts />

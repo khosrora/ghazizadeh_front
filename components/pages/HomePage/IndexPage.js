@@ -9,7 +9,9 @@ import SpareParts from "./SpareParts";
 import SuggestSection from "./SuggestSection";
 
 
-const IndexPage = () => {
+const IndexPage = ({ props }) => {
+
+
     return (
         <div className="p-2">
             <div className="flex flex-col justify-center items-center  lg:mt-8 md:flex-row-reverse md:justify-between md:items-center">
@@ -21,10 +23,12 @@ const IndexPage = () => {
                         alt="car-image"
                     />
                 </div>
-                <HeaderHomePage />
+                <HeaderHomePage headerDetails={props.header} />
             </div>
-            <SuggestSection />
-            <CarAccessories />
+            <SuggestSection banners={props.banners} />
+            <Suspense fallback={null}>
+                <CarAccessories />
+            </Suspense>
             <SpareParts />
             <Accessories />
             <Consumables />
