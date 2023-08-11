@@ -1,9 +1,21 @@
+import { useRouter } from 'next/router';
 import React from 'react'
+import { buildURLQuery } from '../../../utils/functions';
 
 function FilterBar() {
+
+    const router = useRouter();
+    const { query } = router;
+
+    const handleSearch = (searchQuery) => {
+        delete query.ordering;
+        const params = buildURLQuery(Object.assign(query, searchQuery));
+        router.push(`/products?${params}`)
+    }
+
     return (
         <div className='flex justify-between items-center mt-8 lg:hidden'>
-            <div className="flex justify-between items-center gap-x-2" onClick={() => window.my_modal_4.showModal()}>
+            <div className="flex justify-between items-center gap-x-2 cursor-pointer" onClick={() => window.my_modal_4.showModal()}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6.5 22V15" stroke="#222222" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M6.5 5V2" stroke="#222222" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
@@ -17,9 +29,11 @@ function FilterBar() {
             <div className="dropdown">
                 <label tabIndex={0} className="m-1">مرتب سازی بر اساس</label>
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 left-2">
-                    <li className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> کمترین قیمت </li>
-                    <li className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> بیشترین قیمت </li>
-                    <li className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> جدید ترین </li>
+                    <li onClick={() => handleSearch({ ordering: 'created_date' })} className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> جدیدترین </li>
+                    <li onClick={() => handleSearch({ ordering: '-created_date' })} className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> قدیمی ترین </li>
+                    <li onClick={() => handleSearch({ ordering: 'order_count' })} className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> پرفروش ترین </li>
+                    <li onClick={() => handleSearch({ ordering: '-price' })} className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> گران ترین </li>
+                    <li onClick={() => handleSearch({ ordering: 'price' })} className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> ارزان ترین </li>
                 </ul>
             </div>
         </div>

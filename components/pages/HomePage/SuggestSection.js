@@ -21,6 +21,7 @@ const SuggestSection = ({ banners }) => {
         }
     }, [])
 
+
     if (screenSize === undefined) return;
     return (
         <>
@@ -44,7 +45,7 @@ const SuggestSection = ({ banners }) => {
                                     <div className="z-20  w-full text-right gap-y-4 flex flex-col justify-center">
                                         <p>{item.heading}</p>
                                         <p>{item.paragraph}</p>
-                                        <Link href="/all_cars">
+                                        <Link href={item.link_url}>
                                             <span className='btn rounded-full'> مشاهده محصولات </span>
                                         </Link>
                                     </div>

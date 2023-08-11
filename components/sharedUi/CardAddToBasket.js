@@ -9,10 +9,10 @@ function CardAddToBasket({ product }) {
             <figure className="p-2 h-[140px] md:h-[160px] lg:h-[220px]">
                 <img
                     src={product.gallery[0].image}
-                    alt="Shoes"
+                    alt={product.title}
                     width="200"
                     height="200"
-                    className="rounded-xl object-contain w-full" />
+                    className="rounded-xl object-cover object-center h-full w-full " />
             </figure>
             <div className="card-body text-right w-full ">
                 <h2 className="card-title font-bold text-[14px]">{product.title}</h2>

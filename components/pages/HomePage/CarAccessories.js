@@ -7,6 +7,7 @@ import TitleSection from "../../sharedUi/TitleSection";
 import Image from "next/image";
 import BtnSwipper from "../../sharedUi/BtnSwipper";
 import http from "../../../utils/httpService";
+import Link from "next/link";
 
 
 
@@ -26,13 +27,14 @@ const CarAccessories = () => {
 
     const swiperRef = useRef();
 
+    console.log(brands);
 
     if (load) return;
     return (
         <>
             <TitleSection
                 title="لوازم خودرو بر اساس برند"
-                url="/"
+                url={`/products`}
             />
             <Swiper
                 breakpoints={{
@@ -54,7 +56,7 @@ const CarAccessories = () => {
                 {
                     brands.map(i =>
                         <SwiperSlide key={i}>
-                            <div className="border border-[#CCCCCC] rounded-xl p-2 h-[148px] sm:h-[248px] lg:p-6 flex flex-col justify-center items-center">
+                            <Link href={`/products?brand=${i.id}`} className="border border-[#CCCCCC] rounded-xl p-2 h-[148px] sm:h-[248px] lg:p-6 flex flex-col justify-center items-center">
                                 <div className="bg-[#222222] h-1/2 w-full rounded-xl p-2 lg:mb-4 md:p-4 flex justify-center items-center">
                                     <img
                                         style={{ objectFit: 'contain' }}
@@ -64,7 +66,7 @@ const CarAccessories = () => {
                                 <div className="h-1/2 w-full flex justify-center items-center">
                                     <span className="text-[16px] font-bold">{i.title}</span>
                                 </div>
-                            </div>
+                            </Link>
                         </SwiperSlide>
                     )
                 }

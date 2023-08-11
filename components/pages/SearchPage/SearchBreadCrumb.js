@@ -7,7 +7,6 @@ function SearchBreadCrumb() {
             <ul>
                 <li><Link href="/store">فروشگاه</Link></li>
                 <li><Link href="/products">محصولات</Link></li>
-                <li>سر سیلندر</li>
             </ul>
         </div>
     )

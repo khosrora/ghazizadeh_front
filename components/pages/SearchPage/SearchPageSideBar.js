@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import Search from '../../sharedUi/Search'
 
 
-function SearchPageSideBar({categories}) {
+function SearchPageSideBar({ categories }) {
 
     const [list, setList] = useState(null);
+    const [search, setSearch] = useState('')
 
     function handleOpenBox(id) {
         if (list === id) {
@@ -37,12 +38,12 @@ function SearchPageSideBar({categories}) {
                                 list === cate.id ?
                                     <>
                                         <div className="my-2">
-                                            <input type="text" placeholder='جست و جو کنید ... ' className='bg-[#FFFFFF] w-full p-2 text-xs rounded-full' />
+                                            <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder='جست و جو کنید ... ' className='bg-[#FFFFFF] w-full p-2 text-xs rounded-full' />
                                         </div>
                                         {
 
                                             cate.subs.map(cateSub =>
-                                                <div key={cateSub.id} className="flex mb-2">
+                                                <div div key={cateSub.id} className="flex mb-2" >
                                                     <div className="form-control w-full">
                                                         <label className="cursor-pointer label justify-start items-center">
                                                             <input type="checkbox" className="checkbox" dir='ltr' />
@@ -59,12 +60,12 @@ function SearchPageSideBar({categories}) {
                     )
                 }
             </div>
-            <div className="flex justify-between items-center p-4 w-full gap-y-4">
+            {/* <div className="flex justify-between items-center p-4 w-full gap-y-4">
                 <p className='font-bold'>فقط کالا های موجود</p>
                 <input type="checkbox" className="toggle toggle-success" />
-            </div>
+            </div> */}
             <div className="btn w-full bg-[#EA0028] text-white">اعمال فیلتر</div>
-        </div>
+        </div >
     )
 }
 

@@ -1,9 +1,9 @@
 import PublicLayout from '../../components/layout/public'
 import SearchIndex from '../../components/pages/SearchPage/SearchIndex'
 import { BASE_API } from '../../utils/baseApi';
+import { buildURLQuery } from '../../utils/functions';
 
 function index(props) {
-
 
     return (
         <PublicLayout>
@@ -12,8 +12,11 @@ function index(props) {
     )
 }
 
-export async function getServerSideProps() {
-    const resProducts = await fetch(`${BASE_API}/store/products/`);
+export async function getServerSideProps({ query }) {
+
+    const params = buildURLQuery(query);
+
+    const resProducts = await fetch(`${BASE_API}/store/search_products?${params}`);
     const resCategories = await fetch(`${BASE_API}/store/categories/`);
 
     const products = await resProducts.json()
@@ -22,7 +25,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            products , 
+            products,
             categories
         }
     }

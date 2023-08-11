@@ -6,7 +6,6 @@ import SearchBreadCrumb from './SearchBreadCrumb'
 
 function SearchIndex({ props }) {
 
-
     return (
         <div className='p-2'>
             <SearchBreadCrumb />
