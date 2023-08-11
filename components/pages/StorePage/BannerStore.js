@@ -8,7 +8,6 @@ import 'swiper/css';
 function BannerStore({ banners }) {
 
     const swiperRef = useRef();
-    console.log(banners);
 
     return (
         <div className='px-4'>

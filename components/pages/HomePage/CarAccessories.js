@@ -19,7 +19,7 @@ const CarAccessories = () => {
     useEffect(() => {
         (async () => {
             const res = await http.get('/brand/brands');
-            setBrands(res.data.results)
+            setBrands(res.data)
             setLoad(false);
         })()
     }, [])
@@ -27,7 +27,7 @@ const CarAccessories = () => {
     const swiperRef = useRef();
 
 
-    if (load) return null;
+    if (load) return;
     return (
         <>
             <TitleSection
@@ -37,7 +37,7 @@ const CarAccessories = () => {
             <Swiper
                 breakpoints={{
                     0: {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                     },
                     740: {
                         slidesPerView: 5,

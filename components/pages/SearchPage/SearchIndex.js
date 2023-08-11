@@ -4,7 +4,9 @@ import FilterBar from './FilterBar'
 import GridSearchPage from './GridSearchPage'
 import SearchBreadCrumb from './SearchBreadCrumb'
 
-function SearchIndex() {
+function SearchIndex({ props }) {
+
+
     return (
         <div className='p-2'>
             <SearchBreadCrumb />
@@ -12,7 +14,7 @@ function SearchIndex() {
                 <Search />
             </div>
             <FilterBar />
-            <GridSearchPage />
+            <GridSearchPage props={props} />
         </div>
     )
 }

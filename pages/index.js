@@ -16,14 +16,17 @@ export default function Home(props) {
 export async function getServerSideProps() {
   const res = await fetch(`${BASE_API}/siteinfo/home_header/`);
   const resBanners = await fetch(`${BASE_API}/siteinfo/slider_and_banner/`);
+  const resCategories = await fetch(`${BASE_API}/store/categories/`);
 
   const header = await res.json()
   const banners = await resBanners.json()
+  const categories = await resCategories.json()
 
   return {
     props: {
       header,
       banners,
+      categories
     }
   }
 }

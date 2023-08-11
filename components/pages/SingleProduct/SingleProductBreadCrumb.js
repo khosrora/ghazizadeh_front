@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import React from 'react'
 
-function SingleProductBreadCrumb() {
+function SingleProductBreadCrumb({title}) {
     return (
         <div className="text-sm breadcrumbs mb-4">
             <ul>
-                <li><Link href="/">فروشگاه</Link></li>
-                <li><Link href="/">لوازم یدکی</Link></li>
-                <li>سر سیلندر</li>
+                <li><Link href="/store">فروشگاه</Link></li>
+                <li><Link href="/products">محصولات</Link></li>
+                <li>{title}</li>
             </ul>
         </div>
     )

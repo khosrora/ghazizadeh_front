@@ -2,14 +2,16 @@ import React from 'react'
 import CommentModal from './CommentModal'
 import CommentsProduct from './CommentsProduct'
 
-function DetailsSingleProduct() {
+function DetailsSingleProduct({ product }) {
+
+    console.log(product);
+
     return (
         <div className='mt-8'>
             <div className="flex justify-between items-center lg:justify-start lg:gap-x-8">
                 <p className='font-bold'> معرفی </p>
                 <p className='font-bold'> مشخصات </p>
                 <p className='font-bold'> نظرات </p>
-                <p className='font-bold'> پرسش ها </p>
             </div>
             <div className="divider"></div>
             <div className="flex flex-col items-start gap-y-8">
@@ -40,10 +42,10 @@ function DetailsSingleProduct() {
             </div>
             <div className="lg:grid lg:grid-cols-5">
                 <div className="lg:col-span-1">
-                    <CommentModal />
+                    <CommentModal productId={product.id} />
                 </div>
                 <div className="lg:col-span-4">
-                    <CommentsProduct />
+                    <CommentsProduct comments={product.comments} />
                 </div>
             </div>
         </div>

@@ -1,31 +1,31 @@
-import React from 'react'
 import PublicLayout from '../../components/layout/public'
-import StoreIndex from '../../components/pages/StorePage/StoreIndex'
+import SearchIndex from '../../components/pages/SearchPage/SearchIndex'
 import { BASE_API } from '../../utils/baseApi';
 
 function index(props) {
+
+
     return (
         <PublicLayout>
-            <StoreIndex props={props} />
+            <SearchIndex props={props} />
         </PublicLayout>
     )
 }
 
 export async function getServerSideProps() {
-    const resBanners = await fetch(`${BASE_API}/siteinfo/slider_and_banner/`);
+    const resProducts = await fetch(`${BASE_API}/store/products/`);
     const resCategories = await fetch(`${BASE_API}/store/categories/`);
 
+    const products = await resProducts.json()
     const categories = await resCategories.json()
-    const banners = await resBanners.json()
 
 
     return {
         props: {
-            banners , 
-             categories
+            products , 
+            categories
         }
     }
 }
-
 
 export default index

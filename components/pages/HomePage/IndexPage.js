@@ -3,14 +3,12 @@ import { Suspense } from "react";
 import Accessories from "./AccessoriesMe";
 import BlogSection from "./BlogSection";
 import CarAccessories from "./CarAccessories";
-import Consumables from "./Consumables";
 import HeaderHomePage from "./HeaderHomePage";
-import SpareParts from "./SpareParts";
+import Categories from "./Categories";
 import SuggestSection from "./SuggestSection";
 
 
 const IndexPage = ({ props }) => {
-
 
     return (
         <div className="p-2">
@@ -29,9 +27,10 @@ const IndexPage = ({ props }) => {
             <Suspense fallback={null}>
                 <CarAccessories />
             </Suspense>
-            <SpareParts />
-            <Accessories />
-            <Consumables />
+            {
+
+                props.categories.map(category => category.is_cart ? <Accessories key={category.id} category={category} /> : <Categories key={category.id} category={category} />)
+            }
             <Suspense>
                 <BlogSection />
             </Suspense>
