@@ -7,7 +7,7 @@ import BtnAddToBasket from '../../sharedUi/BtnAddToBasket';
 import TitleSection from '../../sharedUi/TitleSection';
 import BtnSwipper from '../../sharedUi/BtnSwipper';
 
-function SuggestProduct() {
+function SuggestProduct({ relationalProducts }) {
 
     const swiperRef = useRef();
 
@@ -40,7 +40,7 @@ function SuggestProduct() {
                     }}
                 >
                     {
-                        [1, 2, 3, 4, 5, 6, 7, 8, 9].map(i =>
+                        relationalProducts.map(i =>
                             <SwiperSlide key={i}>
                                 <div className="bg-[#F8F9FA] rounded-xl">
                                     <figure className="p-2 h-[140px] md:h-[160px] lg:h-[220px]">

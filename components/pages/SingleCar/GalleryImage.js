@@ -12,7 +12,8 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper";
 
-export default function GalleryImage() {
+export default function GalleryImage({ gallery, image }) {
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -25,18 +26,17 @@ export default function GalleryImage() {
         className="mySwiper2 swiper-slide2 rounded-md"
       >
         <SwiperSlide>
-          <img className="object-cover" src="https://cdn.nody.ir/files/2021/09/12/nody-%D8%A8%D9%87%D8%AA%D8%B1%DB%8C%D9%86-%D8%B9%DA%A9%D8%B3-%D9%85%D8%A7%D8%B4%DB%8C%D9%86-%D8%A8%D8%B1%D8%A7%DB%8C-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84-1631419522.jpg" />
+          <img className="object-cover" src={image} />
         </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover"
-            src="https://cdn.nody.ir/files/2021/08/21/nody-%D8%B9%DA%A9%D8%B3-%D8%A8%DB%8C-%D8%A7%D9%85-%D9%88-%D9%87%D8%A7%DB%8C-%D9%85%D9%88%D8%AC%D9%88%D8%AF-%D8%AF%D8%B1-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-1629548416.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover"
-            src="https://yadakyar.com/blog/wp-content/uploads/2022/10/%D8%A8%DB%8C-%D8%A7%D9%85-%D9%88-%D8%A7%D9%93%DB%8C-8.jpg" />
-        </SwiperSlide>
+        {
+          gallery.map(image =>
+            <SwiperSlide key={image.id}>
+              <img
+                className="object-cover"
+                src={image.image} />
+            </SwiperSlide>
+          )
+        }
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -49,16 +49,18 @@ export default function GalleryImage() {
       >
         <SwiperSlide className="swiper-slide2">
           <img
-            src="https://cdn.nody.ir/files/2021/09/12/nody-%D8%A8%D9%87%D8%AA%D8%B1%DB%8C%D9%86-%D8%B9%DA%A9%D8%B3-%D9%85%D8%A7%D8%B4%DB%8C%D9%86-%D8%A8%D8%B1%D8%A7%DB%8C-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84-1631419522.jpg" />
+            src={image}
+          />
         </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://cdn.nody.ir/files/2021/08/21/nody-%D8%B9%DA%A9%D8%B3-%D8%A8%DB%8C-%D8%A7%D9%85-%D9%88-%D9%87%D8%A7%DB%8C-%D9%85%D9%88%D8%AC%D9%88%D8%AF-%D8%AF%D8%B1-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86-1629548416.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://yadakyar.com/blog/wp-content/uploads/2022/10/%D8%A8%DB%8C-%D8%A7%D9%85-%D9%88-%D8%A7%D9%93%DB%8C-8.jpg" />
-        </SwiperSlide>
+        {
+          gallery.map(image =>
+            <SwiperSlide key={image.id}>
+              <img
+                className="object-cover"
+                src={image.image} />
+            </SwiperSlide>
+          )
+        }
       </Swiper>
     </div>
   );

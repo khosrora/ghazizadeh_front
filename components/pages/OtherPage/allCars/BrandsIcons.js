@@ -4,45 +4,24 @@ import TitleSection from '../../../sharedUi/TitleSection';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
+import { useRouter } from 'next/router';
 
 
-let items = [
-    {
-        id: 1,
-        name: 'لیفان'
-    },
-    {
-        id: 2,
-        name: 'تویوتا'
-    },
-    {
-        id: 3,
-        name: 'جی ای اس'
-    },
-    {
-        id: 4,
-        name: 'هیوندای'
-    },
-    {
-        id: 5,
-        name: 'پی وای دی'
-    },
-    {
-        id: 6,
-        name: 'ام جی'
-    },
-    {
-        id: 7,
-        name: 'سانگ یانگ'
-    },
-]
+function BrandsIcons({ banners, setHasMore }) {
 
-function BrandsIcons() {
+    const router = useRouter();
+
+    const handleRoute = id => {
+        setHasMore(true)
+        if (id === null) router.push(`/all_cars`)
+        else router.push(`/all_cars?brand=${id}`)
+    }
+
     return (
         <div>
             <TitleSection
                 span
-                title="لوازم خودرو بر اساس برند"
+                title="برند های خودرو"
             />
             <Swiper
                 breakpoints={{
@@ -54,17 +33,17 @@ function BrandsIcons() {
                     },
                     1200: {
                         slidesPerView: 10,
-                    },
-                    2000: {
-                        slidesPerView: 12,
-                    },
+                    }
                 }}
                 spaceBetween={10}
             >
+                <SwiperSlide>
+                    <div onClick={() => handleRoute(null)} className="badge p-4 w-28 text-[16px] cursor-pointer">همه</div>
+                </SwiperSlide>
                 {
-                    items.map(i =>
+                    banners.map(i =>
                         <SwiperSlide key={i.id}>
-                            <div className="badge p-4 w-28 text-[16px]">{i.name}</div>
+                            <div onClick={() => handleRoute(i.id)} className="badge p-4 w-28 text-[16px] cursor-pointer">{i.title}</div>
                         </SwiperSlide>
                     )
                 }

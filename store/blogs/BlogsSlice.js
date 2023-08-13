@@ -9,13 +9,14 @@ const initialState = {
   loadNext: false,
   blogs: [],
   next: null,
+  count: null
 }
 
 export const getBlogs = createAsyncThunk(
-  'blogs/getBlogs', async () => {
+  'blogs/getBlogs', async (link) => {
     try {
 
-      const res = await http.get('/blog/blogs')
+      const res = await http.get(link)
       return res.data
     } catch (error) {
       rejected()
@@ -26,7 +27,6 @@ export const getBlogs = createAsyncThunk(
 export const getNextPageBlog = createAsyncThunk(
   'blogs/getNextPageBlog', async (link) => {
     try {
-
       const res = await http.get(link);
       return res.data
     } catch (error) {
@@ -45,7 +45,8 @@ export const blogsSlice = createSlice({
     })
     builder.addCase(getBlogs.fulfilled, (state, action) => {
       state.blogs = action.payload.results;
-      state.next = action.payload.next;
+      state.count = action.payload.count;
+      state.next = action.payload.links.next;
       state.loadBlogs = false
     })
     builder.addCase(getBlogs.rejected, (state) => {
@@ -57,8 +58,8 @@ export const blogsSlice = createSlice({
       state.loadNext = true
     })
     builder.addCase(getNextPageBlog.fulfilled, (state, action) => {
-      state.blogs = state.blogs.concat(action.payload.results)
-      state.next = action.payload.next;
+      state.blogs = [...state.blogs, ...action.payload.results]
+      state.next = action.payload.links.next;
       state.loadNext = false
     })
     builder.addCase(getNextPageBlog.rejected, (state) => {

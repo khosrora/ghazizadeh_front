@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Suspense, useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import { getComments } from '../../../store/public/publicSlice';
 import CommentModal from './CommentModal'
 import CommentsProduct from './CommentsProduct'
 
 function DetailsSingleProduct({ product }) {
-
-    console.log(product);
 
     return (
         <div className='mt-8'>
@@ -20,18 +20,18 @@ function DetailsSingleProduct({ product }) {
                         معرفی محصول
                         <div className="bg-red-600 h-[2px] w-full"></div>
                     </div>
-                    <p className='text-[14px] text-[#444444] leading-8'>
-                        دیسک ترمز اسپرت هیدیکا دارای پوشش سطحی (کوتینگ-COATING) می باشد. این پوشش عامل ایجاد ﻣﻘﺎوﻣـﺖ ﺑﺴـﯿﺎر ﺑﺎﻻ در ﺑﺮاﺑﺮ ﺧﻮردﮔﯽ ، ﺣﺮارت، در عین حال حفظ خواص مکانیکی دیسک می باشد. قابلیت خنک کاری با بهره گیری از طراحی چیدمان سوراخ های روی سطح دیسک به صورت موثری افزایش یافته، همچنین در تولید این محصول از مواد اولیه مطابق با بهترین و با کیفیت ترین مواد اولیه در سطح استاندارد استفاده شده است
-                    </p>
+                    <div className="" dangerouslySetInnerHTML={{ __html: product.desc }}></div>
                 </div>
                 <div className="flex flex-col items-start gap-y-4">
                     <div className='font-bold relative'>
                         مشخصات
                         <div className="bg-red-600 h-[2px] w-full"></div>
                     </div>
-                    <p className='text-[14px] text-[#444444] leading-8'>
-                        دیسک ترمز اسپرت هیدیکا دارای پوشش سطحی (کوتینگ-COATING) می باشد. این پوشش عامل ایجاد ﻣﻘﺎوﻣـﺖ ﺑﺴـﯿﺎر ﺑﺎﻻ در ﺑﺮاﺑﺮ ﺧﻮردﮔﯽ ، ﺣﺮارت، در عین حال حفظ خواص مکانیکی دیسک می باشد. قابلیت خنک کاری با بهره گیری از طراحی چیدمان سوراخ های روی سطح دیسک به صورت موثری افزایش یافته، همچنین در تولید این محصول از مواد اولیه مطابق با بهترین و با کیفیت ترین مواد اولیه در سطح استاندارد استفاده شده است
-                    </p>
+                    {
+                        product.specs.map(i =>
+                            <p key={i.id} className='text-[#666666] text-[16px]'> {i.key}: <span className='font-bold'> {i.value} </span> </p>
+                        )
+                    }
                 </div>
                 <div className="flex flex-col items-start gap-y-4 w-full mb-8">
                     <div className='font-bold relative'>
@@ -44,8 +44,10 @@ function DetailsSingleProduct({ product }) {
                 <div className="lg:col-span-1">
                     <CommentModal productId={product.id} />
                 </div>
-                <div className="lg:col-span-4">
-                    <CommentsProduct comments={product.comments} />
+                <div className="mt-4 lg:col-span-4 lg:mt-0">
+                    <Suspense>
+                        <CommentsProduct comments={product.comments} />
+                    </Suspense>
                 </div>
             </div>
         </div>

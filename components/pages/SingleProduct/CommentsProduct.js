@@ -1,14 +1,14 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
-import Link from 'next/link';
 import BtnSwipper from '../../sharedUi/BtnSwipper';
 
 function CommentsProduct({ comments }) {
 
     const swiperRef = useRef();
+
 
     return (
         <div className='px-4'>
@@ -41,8 +41,8 @@ function CommentsProduct({ comments }) {
                             pagination={{ clickable: true }}
                         >
                             {
-                                [1, 2, 3, 4, 5, 6, 7, 8, 9].map(i =>
-                                    <SwiperSlide key={i.id}>
+                                comments.map(comment =>
+                                    <SwiperSlide key={comment.id}>
                                         <div className="bg-[#FFFFFF] p-4 rounded-xl w-full">
                                             <div className="flex flex-col justify-between items-start gap-y-6">
                                                 <div className="flex justify-between items-center w-full">
@@ -53,12 +53,12 @@ function CommentsProduct({ comments }) {
                                                                 <path d="M20.5901 22C20.5901 18.13 16.7402 15 12.0002 15C7.26015 15 3.41016 18.13 3.41016 22" stroke="#222222" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                                             </svg>
                                                         </div>
-                                                        <p className='font-bold text-[12px] text-[#444444]'>امیرحسین محتشم بخشایش</p>
+                                                        <p className='font-bold text-[12px] text-[#444444]'>{comment.full_name}</p>
                                                     </div>
                                                     <span className='text-[#888888] text-xs'> 1 روز پیش </span>
                                                 </div>
-                                                <p className='font-bold text-[14px]'>
-                                                    این محصول را پیشنهاد می کنم
+                                                <p className='font-bold text-right text-[10px] leading-6'>
+                                                    {comment.text}
                                                 </p>
                                             </div>
                                         </div>

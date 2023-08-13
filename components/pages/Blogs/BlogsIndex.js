@@ -1,15 +1,18 @@
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlogs, getNextPageBlog } from '../../../store/blogs/BlogsSlice';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import CustomLoader from '../../sharedUi/CustomLoader';
 
 function BlogsIndex() {
 
+    const [hasMore, setHasMore] = useState(true)
     const dispatch = useDispatch();
-    const { loadBlogs, blogs, next, loadNext } = useSelector(state => state.blogs)
+    const { loadBlogs, blogs, next,  count } = useSelector(state => state.blogs)
 
     useEffect(() => {
-        dispatch(getBlogs());
+        dispatch(getBlogs('/blog/blogs'));
     }, [])
 
 
@@ -46,9 +49,13 @@ function BlogsIndex() {
         )
     }
 
-    const handleNextPage = () => {
-        dispatch(getNextPageBlog(next))
-    }
+    const fetchMoreData = () => {
+        if (blogs.length >= count) {
+            setHasMore(false);
+        } else {
+            dispatch(getNextPageBlog(next))
+        }
+    };
 
     return (
         <div className='p-4 lg:p-0'>
@@ -63,38 +70,39 @@ function BlogsIndex() {
                             <span>هیج مقاله ای برای نمایش وجود ندارد</span>
                         </div>
                         :
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {
-                                blogs.map((i, index) =>
-                                    <div key={index} className="bg-[#F8F9FA] rounded-xl">
-                                        <figure className="px-4 pt-4">
-                                            <img src={i.image.image} title={i.image.title} className="rounded-xl h-40 w-full object-cover" />
-                                        </figure>
-                                        <div className="card-body text-right w-full ">
-                                            <h2 className="card-title font-bold text-[16px] mb-2">
-                                                {
-                                                    i.title.length > 30 ?
-                                                        `${i.title.substring(0, 30)}...` : i.title
-                                                }
-                                            </h2>
-                                            <Link alt={i.title} href={`/blogs/${i.slug}`}>
-                                                <div className="card-actions">
-                                                    <span className="btn bg-[#FFFFFF] w-full text-[#EA0028] rounded-full text-[12px]">مشاهده محصولات</span>
-                                                </div>
-                                            </Link>
+                        <InfiniteScroll
+                            dataLength={blogs.length} //! This is important field to render the next data
+                            next={fetchMoreData}
+                            hasMore={hasMore}
+                            loader={<CustomLoader />}
+                            endMessage={''}
+                        >
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                {
+                                    blogs.map((i, index) =>
+                                        <div key={index} className="bg-[#F8F9FA] rounded-xl">
+                                            <figure className="px-4 pt-4">
+                                                <img src={i.image.image} title={i.image.title} className="rounded-xl h-40 w-full object-cover" />
+                                            </figure>
+                                            <div className="card-body text-right w-full ">
+                                                <h2 className="card-title font-bold text-[16px] mb-2">
+                                                    {
+                                                        i.title.length > 30 ?
+                                                            `${i.title.substring(0, 30)}...` : i.title
+                                                    }
+                                                </h2>
+                                                <Link alt={i.title} href={`/blogs/${i.slug}`}>
+                                                    <div className="card-actions">
+                                                        <span className="btn bg-[#FFFFFF] w-full text-[#EA0028] rounded-full text-[12px]">مشاهده محصولات</span>
+                                                    </div>
+                                                </Link>
+                                            </div>
                                         </div>
-                                    </div>
-                                )
-                            }
-                        </div>
-            }
-            {
-                !!next &&
-                <div className="w-full flex justify-center items-center mt-16">
-                    <button disabled={loadNext ? true : false} className='btn rounded-full px-16' onClick={() => handleNextPage()}>
-                        {loadNext ? <span className="loading loading-spinner loading-xs"></span> : 'موارد بیشتر '}
-                    </button>
-                </div>
+                                    )
+                                }
+
+                            </div>
+                        </InfiniteScroll>
             }
         </div>
     )

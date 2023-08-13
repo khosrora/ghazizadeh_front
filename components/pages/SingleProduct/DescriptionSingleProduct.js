@@ -5,7 +5,7 @@ function DescriptionSingleProduct({ specs , title }) {
         <div className='flex flex-col gap-y-4 mt-8 lg:mt-0'>
             <p className='text-[16px] font-bold'>{title}</p>
             {
-                specs.map(i =>
+                specs.slice(1,5).map(i =>
                     <p key={i.id} className='text-[#666666] text-[16px]'> {i.key}: <span className='font-bold'> {i.value} </span> </p>
                 )
             }

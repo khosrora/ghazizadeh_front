@@ -1,15 +1,15 @@
-import { useRouter } from 'next/router';
 import React, { useRef } from 'react'
 import { useForm } from "react-hook-form";
-import { useSelector } from 'react-redux';
-import { errorMessage, successMessage } from '../../../utils/toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { addComment } from '../../../store/public/publicSlice';
+import { errorMessage } from '../../../utils/toast';
 import ErrorMessage from '../../sharedUi/ErrorMessage';
-import http from './../../../utils/httpService'
 
 function CommentModal({ productId }) {
 
     const btnRef = useRef();
-    const router = useRouter();
+    const dispatch = useDispatch();
+
     const { userDetails } = useSelector(state => state.user)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -21,19 +21,9 @@ function CommentModal({ productId }) {
             product: productId,
             user: userDetails.id
         }
-        try {
-            const res = await http.post('store/comment' , payload);
-            if (res.status === 201) {
-                console.log(res);
-                successMessage('')
-            }
-        } catch (error) {
-            errorMessage('مشکلی از سمت سرور پیش آمده است')
-            console.log(error);
-        }
+        dispatch(addComment(payload))
         reset();
         btnRef.current.submit();        
-
     };
 
 

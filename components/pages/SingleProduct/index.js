@@ -18,7 +18,7 @@ function SingleProduct({ props }) {
                         <GalleryImage images={product.gallery} />
                     </div>
                     <div className="lg:col-span-1">
-                        <DescriptionSingleProduct  specs={product.specs} title={product.title} />
+                        <DescriptionSingleProduct specs={product.specs} title={product.title} />
                     </div>
                     <div className="lg:col-span-1 space-y-4 mt-4 lg:mt-0">
                         <div className="flex justify-between items-center">
@@ -30,7 +30,10 @@ function SingleProduct({ props }) {
                 </div>
                 <DetailsSingleProduct product={product} />
             </div>
-            <SuggestProduct />
+            {
+                product.relational_products.length === 0 ? null :
+                    <SuggestProduct relationalProducts={product.relational_products} />
+            }
         </>
     )
 }
