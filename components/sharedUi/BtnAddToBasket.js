@@ -1,13 +1,16 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToBasket } from '../../store/basket/BasketSlice';
+import { errorMessage } from '../../utils/toast';
 
 function BtnAddToBasket({ product }) {
 
     const dispatch = useDispatch();
+    const { userDetails } = useSelector(state => state.user);
 
     const handleAddToBasket = (e) => {
         e.preventDefault();
+        if (userDetails === null) return errorMessage('ابتدا وارد وب سایت شوید')
         dispatch(addToBasket(product))
     }
 

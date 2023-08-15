@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteAddress, getAddressUser } from '../../../../store/dashboard/DashboardSlice';
 
-function Address() {
+function Address({  setAddressId }) {
 
     const dispatch = useDispatch();
     const { loadAddress, address } = useSelector(state => state.dashboard);
@@ -44,7 +44,7 @@ function Address() {
                                     <div className="flex justify-between items-center">
                                         <div className="form-control">
                                             <label className="label cursor-pointer">
-                                                <input type="radio" name="radio-10" className="radio checked:bg-red-500" />
+                                                <input type="radio" name="radio-10" className="radio checked:bg-red-500"  onClick={() => setAddressId(i.id)} />
                                                 <span className="label-text mr-4">نام و نام خانوادگی دریافت کننده: {i.full_name}</span>
                                             </label>
                                         </div>

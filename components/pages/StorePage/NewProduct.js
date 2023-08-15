@@ -7,15 +7,16 @@ import BtnAddToBasket from '../../sharedUi/BtnAddToBasket';
 import TitleSection from '../../sharedUi/TitleSection';
 import BtnSwipper from '../../sharedUi/BtnSwipper';
 
-function NewProduct() {
+function NewProduct({ latestProducts }) {
 
     const swiperRef = useRef();
+    console.log(latestProducts);
 
     return (
 
         <>
             <TitleSection
-                title="لوازم جانبی خودرو"
+                title="جدیدترین محصولات"
             />
             <div className="rounded-xl">
                 <Swiper
@@ -40,21 +41,21 @@ function NewProduct() {
                     }}
                 >
                     {
-                        [1, 2, 3, 4, 5, 6, 7, 8, 9].map(i =>
+                        latestProducts.map(i =>
                             <SwiperSlide key={i}>
                                 <div className="bg-[#F8F9FA] rounded-xl">
                                     <figure className="p-2 h-[140px] md:h-[160px] lg:h-[220px]">
                                         <img
-                                            src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/153/15318/15318081.jpg"
+                                            src={i.gallery[0].image}                                            
                                             alt="Shoes"
                                             className="rounded-xl object-contain" />
                                     </figure>
                                     <div className="card-body text-right w-full ">
-                                        <h2 className="card-title font-bold text-[14px]">لیفان</h2>
-                                        <p className="card-title font-bold text-[12px]">فرمون خودرو مدل TRETTF2</p>
+                                        <h2 className="card-title font-bold text-[14px]">{i.brand.title}</h2>
+                                        <p className="card-title font-bold text-[12px]">{i.title}</p>
                                         <div className="card-actions flex justify-between items-center">
-                                            <span className='text-[12px]'>200/000 <span className='text-[8px]'>تومان</span></span>
-                                            <BtnAddToBasket />
+                                            <span className='text-[12px]'>{new Intl.NumberFormat().format(i.price)} <span className='text-[8px]'>تومان</span></span>
+                                            <BtnAddToBasket product={i} />
                                         </div>
                                     </div>
                                 </div>

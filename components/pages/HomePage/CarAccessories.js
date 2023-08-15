@@ -27,7 +27,6 @@ const CarAccessories = () => {
 
     const swiperRef = useRef();
 
-    console.log(brands);
 
     if (load) return;
     return (

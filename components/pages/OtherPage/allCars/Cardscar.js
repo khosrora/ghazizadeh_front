@@ -42,7 +42,7 @@ function Cardscar({ nextPage, hasMore, setHasMore, count }) {
                                     cars.map(car =>
                                         <div key={car.id} className="card bg-[#F8F9FA] h-[270px] lg:h-[324px]">
                                             <figure className='h-[180px] '>
-                                                <img className='rounded-xl h-full w-full object-cover' src={car.image} alt="Shoes" />
+                                                <img className='rounded-xl h-full w-full object-cover' src={car.image} alt={car.title} />
                                             </figure>
                                             <div className="card-body p-2">
                                                 <h2 className="card-title text-[14px]">{car.title}</h2>

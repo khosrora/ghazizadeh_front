@@ -20,16 +20,12 @@ function CardBasket({ product }) {
 
     return (
         <div className="bg-[#FFFFFF] rounded-xl p-2">
-            <figure className='h-[150px] w-full'>
-                <img
-                    src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2023_17/3598288/31vtpbqa3pl-sl500-640f77363e78e.jpg"
-                    alt=""
-                    className='w-full h-full object-contain rounded-xl'
-                />
+            <figure className='h-[180px] '>
+                <img className='rounded-xl h-full w-full object-cover' src={product.image} alt={product.title} />
             </figure>
             <div className="space-y-4 mt-2 p-2">
                 <p className='text-[14px] font-bold'>{product.title}</p>
-                <p className='text-[12px]' Ï>فرمون خودرو مدل TRETTF2</p>
+                {/* <p className='text-[12px]'>فرمون خودرو مدل TRETTF2</p> */}
                 <div className="flex justify-start items-center gap-x-4">
                     <div className="bg-[#EA0028] p-1 rounded-full cursor-pointer" onClick={() => handlePlus(product.id)}>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

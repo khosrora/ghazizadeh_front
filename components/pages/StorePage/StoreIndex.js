@@ -10,12 +10,13 @@ import Categories from '../HomePage/Categories'
 
 function StoreIndex({ props }) {
 
+
     return (
         <div>
             <SearchBar />
             <BannerStore banners={props.banners} />
             <CarAccessories />
-            <NewProduct />
+            <NewProduct latestProducts={props.latestProduct} />
             {/* <PopularrStore /> */}
             {
                 props.categories.map(category => category.is_cart ? <AccessoriesMe key={category.id} category={category}  /> : <Categories key={category.id} category={category} />)
