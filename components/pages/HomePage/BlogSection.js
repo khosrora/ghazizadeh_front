@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBlogs } from "../../../store/blogs/BlogsSlice";
 
 
-
+   
 
 const BlogSection = () => {
 
@@ -18,8 +18,9 @@ const BlogSection = () => {
     const { blogs } = useSelector(state => state.blogs)
     const swiperRef = useRef();
 
+
     useEffect(() => {
-        dispatch(getBlogs())
+        dispatch(getBlogs('/blog/blogs'))
     }, [])
 
     return (

@@ -4,6 +4,7 @@ import dashboardReducer from './dashboard/DashboardSlice'
 import userReducer from './user/UserSlice'
 import blogsReducer from './blogs/BlogsSlice'
 import publicSlice from './public/publicSlice'
+import BasketSlice from './basket/BasketSlice'
 
 
 export const store = configureStore({
@@ -11,7 +12,8 @@ export const store = configureStore({
         user: userReducer,
         dashboard: dashboardReducer,
         blogs: blogsReducer,
-        public: publicSlice
+        public: publicSlice,
+        basket: BasketSlice
     },
     devTools: true
 })

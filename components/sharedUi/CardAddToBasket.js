@@ -4,6 +4,8 @@ import BtnAddToBasket from './BtnAddToBasket'
 
 function CardAddToBasket({ product }) {
 
+
+
     return (
         <Link href={`/products/${product.id}`} className="bg-[#FFFFFF] rounded-xl">
             <figure className="p-2 h-[140px] md:h-[160px] lg:h-[220px]">
@@ -19,7 +21,7 @@ function CardAddToBasket({ product }) {
                 <p className="card-title font-bold text-[12px]">فرمون خودرو مدل TRETTF2</p>
                 <div className="card-actions flex justify-between items-center">
                     <span className='text-[12px]'>{new Intl.NumberFormat().format(product.price)} <span className='text-[8px]'>تومان</span></span>
-                    <BtnAddToBasket />
+                    <BtnAddToBasket product={product} />
                 </div>
             </div>
         </Link>

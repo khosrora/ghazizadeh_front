@@ -1,9 +1,22 @@
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { getBasketState } from '../../../store/basket/BasketSlice'
 import CardBasket from '../../sharedUi/CardBasket'
 import DetailBasket from './DetailBasket'
 import TitleBasketPage from './TitleBasketPage'
 
 function BasketIndex() {
+
+    const { basket } = useSelector(getBasketState);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (basket.length === 0) {
+            router.back();
+        }
+    }, [basket]);
+
     return (
         <div className='p-4 space-y-4'>
             <TitleBasketPage />
@@ -13,8 +26,8 @@ function BasketIndex() {
                 </div>
                 <div className="grid grid-cols-2 gap-4 mt-4 lg:mt-0 lg:grid-cols-3 lg:w-2/3">
                     {
-                        [1, 2, 3, 4, 5, 6].map((i , index) =>
-                            <CardBasket key={index} />
+                        basket.map(item =>
+                            <CardBasket key={item.id} product={item} />
                         )
                     }
                 </div>

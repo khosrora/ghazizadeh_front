@@ -1,4 +1,6 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addToBasket } from '../../../store/basket/BasketSlice'
 import DescriptionSingleProduct from './DescriptionSingleProduct'
 import DetailsSingleProduct from './DetailsSingleProduct'
 import GalleryImage from './GalleryImage'
@@ -8,6 +10,13 @@ import SuggestProduct from './SuggestProduct'
 function SingleProduct({ props }) {
 
     const { product } = props;
+
+    const dispatch = useDispatch();
+
+    const handleAddToBasket = (e) => {
+        e.preventDefault();
+        dispatch(addToBasket(product))
+    }
 
     return (
         <>
@@ -25,7 +34,7 @@ function SingleProduct({ props }) {
                             <p>قیمت :</p>
                             <p>{new Intl.NumberFormat().format(product.price)} <span>تومان</span></p>
                         </div>
-                        <div className="btn bg-[#EA0028] rounded-full w-full text-white">افزودن به سبد خرید</div>
+                        <div className="btn bg-[#EA0028] rounded-full w-full text-white" onClick={(e) => handleAddToBasket(e)}>افزودن به سبد خرید</div>
                     </div>
                 </div>
                 <DetailsSingleProduct product={product} />

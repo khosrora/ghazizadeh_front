@@ -1,8 +1,18 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { addToBasket } from '../../store/basket/BasketSlice';
 
-function BtnAddToBasket() {
+function BtnAddToBasket({ product }) {
+
+    const dispatch = useDispatch();
+
+    const handleAddToBasket = (e) => {
+        e.preventDefault();
+        dispatch(addToBasket(product))
+    }
+
     return (
-        <div className="bg-[#EA0028] p-1 rounded-full">
+        <button className="bg-[#EA0028] p-1 rounded-full z-20" onClick={(e) => handleAddToBasket(e)}>
             <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="36" height="36" rx="18" fill="#EA0028" />
                 <path d="M13.5 13.67V12.7C13.5 10.45 15.31 8.24 17.56 8.03C20.24 7.77 22.5 9.88 22.5 12.51V13.89" stroke="white" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
@@ -10,7 +20,7 @@ function BtnAddToBasket() {
                 <path d="M21.4955 18H21.5045" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M14.4945 18H14.5035" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-        </div>
+        </button>
     )
 }
 

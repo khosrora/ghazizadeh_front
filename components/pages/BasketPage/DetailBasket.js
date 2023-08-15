@@ -1,11 +1,28 @@
-import React from 'react'
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { getBasketState } from './../../../store/basket/BasketSlice'
 
 function DetailBasket() {
+
+    const { basket } = useSelector(getBasketState);
+    const [total, setTotal] = useState()
+
+    useEffect(() => {
+        const getTotal = () => {
+            const total = basket.reduce((prev, item) => {
+                return prev + (item.price * item.count)
+            }, 0)
+            setTotal(total);
+        }
+        getTotal()
+    }, [basket])
+
     return (
         <div className='space-y-4'>
             <div className="flex justify-between items-center">
                 <p className='text-[12px]'>جمع کل هزینه</p>
-                <p className='text-[14px] font-bold'> 320,000,000 تومان </p>
+                <p className='text-[14px] font-bold'> {new Intl.NumberFormat().format(total)} تومان </p>
             </div>
             <hr />
             <div className="flex flex-col items-start">
@@ -21,10 +38,12 @@ function DetailBasket() {
             </div>
             <hr />
             <div className="flex justify-between items-center">
-                <p className='text-[12px]'>سود شما</p>
-                <p className='text-[14px] font-bold'> 320,000,000 تومان </p>
+                <p className='text-[12px]'>مبلغ قابل پرداخت</p>
+                <p className='text-[14px] font-bold'> {new Intl.NumberFormat().format(total)} تومان </p>
             </div>
-            <button className='btn w-full bg-[#EA0028] text-white rounded-full'>ادامه خرید</button>
+            <Link href='/basket/finally' className='btn w-full bg-[#EA0028] text-white rounded-full'>
+                <p>ادامه خرید</p>
+            </Link>
         </div>
     )
 }
