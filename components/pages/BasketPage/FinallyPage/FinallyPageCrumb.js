@@ -5,8 +5,8 @@ function FinallyPageCrumb() {
     return (
         <div className="text-sm breadcrumbs">
             <ul>
-                <li><Link href="/">فروشگاه</Link></li>
-                <li>نحوه ارسال</li>
+                <li><Link href="/basket">سبد خرید</Link></li>
+                <li>درگاه پرداخت</li>
             </ul>
         </div>
     )

@@ -10,13 +10,13 @@ import BtnSwipper from '../../sharedUi/BtnSwipper';
 function NewProduct({ latestProducts }) {
 
     const swiperRef = useRef();
-    console.log(latestProducts);
 
     return (
 
         <>
             <TitleSection
                 title="جدیدترین محصولات"
+                url='/products?ordering=-created_date'
             />
             <div className="rounded-xl">
                 <Swiper

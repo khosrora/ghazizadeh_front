@@ -62,34 +62,9 @@ function Cardscar({ nextPage, hasMore, setHasMore, count }) {
                         }
                     </InfiniteScroll>
             }
-            {/* <div className="">
-                <div className="">next</div>
-                <div className="">prev</div>
-            </div> */}
         </div>
     )
 }
 
-{/* <div className='px-4 mt-8 grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4'>
-    {
-        cars.map(car =>
-            <div key={car.id} className="card bg-[#F8F9FA] h-[270px] lg:h-[324px]">
-                <figure className='h-[180px] '>
-                    <img className='rounded-xl h-full w-full object-cover' src={car.image} alt="Shoes" />
-                </figure>
-                <div className="card-body p-2">
-                    <h2 className="card-title text-[14px]">{car.title}</h2>
-                    <p className='text-[12px]'>{car.title} مدل</p>
-                    <Link href="/">
-                        <div className="card-actions btn text-white rounded-full text-center bg-[#FFFFFF] flex justify-center items-center">
-                            <div className="card-actions w-full flex justify-center items-center">
-                                <span className="text-[#EA0028] text-[12px]">مشاهده محصولات</span>
-                            </div>
-                        </div>
-                    </Link>
-                </div>
-            </div>
-        )
-    }
-</div> */}
+
 export default Cardscar

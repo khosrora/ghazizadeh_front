@@ -6,7 +6,8 @@ import { successMessage } from '../../utils/toast';
 
 const initialState = {
   loadAddComment: false,
-  cars: []
+  cars: [],
+  products: []
 }
 
 
@@ -37,6 +38,18 @@ export const getCars = createAsyncThunk(
   }
 )
 
+export const getProducts = createAsyncThunk(
+  'public/getProducts', async (link) => {
+    try {
+      const res = await http.get(link)
+      return res.data.results;
+    } catch (error) {
+      console.log(error);
+      rejected()
+    }
+  }
+)
+
 
 export const publicSlice = createSlice({
   name: 'public',
@@ -44,7 +57,10 @@ export const publicSlice = createSlice({
   reducers: {
     getFirstCar: (state, action) => {
       state.cars = action.payload;
-    }
+    },
+    getFirstProduct: (state, action) => {
+      state.products = action.payload;
+    },
   },
   extraReducers: (builder) => {
 
@@ -63,10 +79,16 @@ export const publicSlice = createSlice({
       state.cars = [...state.cars, ...action.payload]
     })
 
+    builder.addCase(getProducts.fulfilled, (state, action) => {
+      state.products = [...state.products, ...action.payload]
+    })
+
   }
 
 })
 
-export const { getFirstCar } = publicSlice.actions
+export const { getFirstCar , getFirstProduct } = publicSlice.actions
 
 export default publicSlice.reducer
+
+export const getPublicState = (state) => state.public;

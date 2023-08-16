@@ -21,13 +21,13 @@ function CardBasket({ product }) {
     return (
         <div className="bg-[#FFFFFF] rounded-xl p-2">
             <figure className='h-[180px] '>
-                <img className='rounded-xl h-full w-full object-cover' src={product.image} alt={product.title} />
+                <img className='rounded-xl h-full w-full object-cover' src={product.image_url} alt={product.title} />
             </figure>
             <div className="space-y-4 mt-2 p-2">
                 <p className='text-[14px] font-bold'>{product.title}</p>
                 {/* <p className='text-[12px]'>فرمون خودرو مدل TRETTF2</p> */}
                 <div className="flex justify-start items-center gap-x-4">
-                    <div className="bg-[#EA0028] p-1 rounded-full cursor-pointer" onClick={() => handlePlus(product.id)}>
+                    <div className="bg-[#EA0028] p-1 rounded-full cursor-pointer" onClick={() => handlePlus(product.product_id)}>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 10H15" stroke="white" stroke-width="1.5" strokeLinecap="round" stroke-linejoin="round" />
                             <path d="M10 15V5" stroke="white" stroke-width="1.5" strokeLinecap="round" stroke-linejoin="round" />
@@ -36,7 +36,7 @@ function CardBasket({ product }) {
                     <p>{product.count}</p>
                     {
                         product.count === 1 ?
-                            <div className="border border-[#EA0028] p-1.5 rounded-full cursor-pointer" onClick={() => handleDelete(product.id)}>
+                            <div className="border border-[#EA0028] p-1.5 rounded-full cursor-pointer" onClick={() => handleDelete(product.product_id)}>
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6.66699 10L6.66699 8" stroke="#EA0028" strokeLinecap="round" />
                                     <path d="M9.33301 10L9.33301 8" stroke="#EA0028" strokeLinecap="round" />
@@ -45,7 +45,7 @@ function CardBasket({ product }) {
                                 </svg>
                             </div>
                             :
-                            <div className="border border-[#EA0028] p-2 py-3 rounded-full cursor-pointer" onClick={() => handleMinus(product.id)}>
+                            <div className="border border-[#EA0028] p-2 py-3 rounded-full cursor-pointer" onClick={() => handleMinus(product.product_id)}>
                                 <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1.00006H11" stroke="#EA0028" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>

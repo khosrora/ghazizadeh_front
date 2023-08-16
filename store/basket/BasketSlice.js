@@ -37,47 +37,46 @@ export const BasketSlice = createSlice({
         errorMessage('این محصول در سبد خرید وجود دارد')
       } else {
         let item = {
-          id: product.id,
+          product_id: product.id,
           title: product.title,
-          image: product.gallery[0].image,
+          image_url: product.gallery[0].image,
           price: product.price,
+          brand: product.brand.title,
           count: 1
         }
         const res = JSON.parse(Cookies.get(BasketName))
         res.push(item)
         Cookies.set(BasketName, JSON.stringify(res))
-        console.log(JSON.parse(Cookies.get(BasketName)));
         state.basket.push(item);
         successMessage('محصول به سبد خرید اضافه شد')
       }
     },
     deleteItemFromCart: (state, action) => {
       const id = action.payload;
-      const newBasket = state.basket.filter(item => item.id !== id);
+      const newBasket = state.basket.filter(item => item.product_id !== id);
       state.basket = newBasket;
-      Cookies.set(BasketName , JSON.stringify(newBasket))
+      Cookies.set(BasketName, JSON.stringify(newBasket))
     },
     plusItemFromCart: (state, action) => {
       const id = action.payload;
       state.basket.forEach(item => {
-        if (item.id === id) {
+        if (item.product_id === id) {
           item.count += 1
         }
       })
-      Cookies.set(BasketName , JSON.stringify(state.basket))
+      Cookies.set(BasketName, JSON.stringify(state.basket))
     },
     minusItemFromCart: (state, action) => {
       const id = action.payload;
       state.basket.forEach(item => {
-        if (item.id === id) {
+        if (item.product_id === id) {
           item.count -= 1
         }
       })
-      Cookies.set(BasketName , JSON.stringify(state.basket))
+      Cookies.set(BasketName, JSON.stringify(state.basket))
     }
   },
   extraReducers: (builder) => {
-
 
   }
 

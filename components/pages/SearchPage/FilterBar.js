@@ -29,11 +29,11 @@ function FilterBar() {
             <div className="dropdown">
                 <label tabIndex={0} className="m-1">مرتب سازی بر اساس</label>
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 left-2">
-                    <li onClick={() => handleSearch({ ordering: 'created_date' })} className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> جدیدترین </li>
-                    <li onClick={() => handleSearch({ ordering: '-created_date' })} className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> قدیمی ترین </li>
-                    <li onClick={() => handleSearch({ ordering: 'order_count' })} className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> پرفروش ترین </li>
-                    <li onClick={() => handleSearch({ ordering: '-price' })} className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> گران ترین </li>
-                    <li onClick={() => handleSearch({ ordering: 'price' })} className='w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl'> ارزان ترین </li>
+                    <li onClick={() => handleSearch({ ordering: 'created_date' })} className={`${query.ordering === 'created_date' ? 'bg-red-600 text-white' : ''} w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl`}> جدیدترین </li>
+                    <li onClick={() => handleSearch({ ordering: '-created_date' })} className={`${query.ordering === '-created_date' ? 'bg-red-600 text-white' : ''} w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl`}> قدیمی ترین </li>
+                    <li onClick={() => handleSearch({ ordering: 'order_count' })} className={`${query.ordering === 'order_count' ? 'bg-red-600 text-white' : ''} w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl`}> پرفروش ترین </li>
+                    <li onClick={() => handleSearch({ ordering: '-price' })} className={`${query.ordering === '-price' ? 'bg-red-600 text-white' : ''} w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl`}> گران ترین </li>
+                    <li onClick={() => handleSearch({ ordering: 'price' })} className={`${query.ordering === 'price' ? 'bg-red-600 text-white' : ''} w-full p-2 cursor-pointer hover:bg-slate-100 rounded-xl`}> ارزان ترین </li>
                 </ul>
             </div>
         </div>

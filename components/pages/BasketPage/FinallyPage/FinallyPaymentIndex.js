@@ -6,7 +6,8 @@ import FinallyPageCrumb from './FinallyPageCrumb'
 
 function FinallyPaymentIndex({ postsType }) {
 
-  const [addressId, setAddressId] = useState()
+  const [addressId, setAddressId] = useState();
+
 
   return (
     <div className='px-4 space-y-4'>
