@@ -26,14 +26,16 @@ export default function GalleryImage({ gallery, image }) {
         className="mySwiper2 swiper-slide2 rounded-md"
       >
         <SwiperSlide>
-          <img className="object-cover" src={image} />
+          <img className="object-cover" src={image} alt={image.title} />
         </SwiperSlide>
         {
           gallery.map(image =>
             <SwiperSlide key={image.id}>
               <img
                 className="object-cover"
-                src={image.image} />
+                src={image.image}
+                alt={image.title}
+              />
             </SwiperSlide>
           )
         }
@@ -57,7 +59,9 @@ export default function GalleryImage({ gallery, image }) {
             <SwiperSlide key={image.id}>
               <img
                 className="object-cover"
-                src={image.image} />
+                src={image.image}
+                alt={image.title}
+              />
             </SwiperSlide>
           )
         }

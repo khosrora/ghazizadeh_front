@@ -60,6 +60,7 @@ const CarAccessories = () => {
                                     <img
                                         style={{ objectFit: 'contain' }}
                                         src={i.logo}
+                                        alt={i.title}
                                     />
                                 </div>
                                 <div className="h-1/2 w-full flex justify-center items-center">

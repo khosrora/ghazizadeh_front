@@ -24,7 +24,7 @@ function GridSearchPage({ props, hasMore, setHasMore }) {
         <>
             <div className="lg:grid lg:grid-cols-10 lg:gap-x-4 lg:mt-12">
                 <div className="hidden lg:p-2 lg:flex lg:col-span-3">
-                    <SearchPageSideBar categories={props.categories} />
+                    <SearchPageSideBar query={query} categories={props.categories} />
                 </div>
                 <div className="lg:col-span-7">
                     {
@@ -51,7 +51,7 @@ function GridSearchPage({ props, hasMore, setHasMore }) {
                     }
                 </div>
             </div>
-            <FilterModal categories={props.categories} />
+            <FilterModal query={query} categories={props.categories} />
         </>
     )
 }

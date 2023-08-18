@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import PublicLayout from '../../components/layout/public'
@@ -23,18 +24,29 @@ function Index(props) {
     }, [cars])
 
     return (
-        <PublicLayout>
-            <BrandsIcons
-                setHasMore={setHasMore}
-                banners={props.banners}
-            />
-            <Cardscar
-                nextPage={nextPage}
-                hasMore={hasMore}
-                count={count}
-                setHasMore={setHasMore}
-            />
-        </PublicLayout>
+        <>
+            <Head>
+                <title>نمایشگاه ماشین گروه خودرویی غازی زاده</title>
+                <meta property="url" content="https://ghazizadeh.co/all_cars" />
+                <meta property="og:type" content="website" />
+                <meta property="og:locale" content="fa_IR" />
+                <meta property="og:site_name" content="نمایش ماشین قطعات خودرو" />
+                <meta name="description" content="نمایش و معرفی خودروهای جدید و بروز برندهای خودروسازی" />
+                <meta name="robots" content="index, follow" />
+            </Head>
+            <PublicLayout>
+                <BrandsIcons
+                    setHasMore={setHasMore}
+                    banners={props.banners}
+                />
+                <Cardscar
+                    nextPage={nextPage}
+                    hasMore={hasMore}
+                    count={count}
+                    setHasMore={setHasMore}
+                />
+            </PublicLayout>
+        </>
     )
 }
 

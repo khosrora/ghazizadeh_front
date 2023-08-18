@@ -1,15 +1,27 @@
+import Head from "next/head";
 import PublicLayout from "../components/layout/public";
 import IndexPage from "../components/pages/HomePage/IndexPage";
 import { BASE_API } from "../utils/baseApi";
-import http from "../utils/httpService";
+
 
 
 export default function Home(props) {
 
   return (
-    <PublicLayout>
-      <IndexPage props={props} />
-    </PublicLayout>
+    <>
+      <Head>
+        <title>گروه خودرویی غازی زاده</title>
+        <meta property="url" content="https://ghazizadeh.co/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="fa_IR" />
+        <meta property="og:site_name" content="فروشکاه قطعات خودرو" />
+        <meta name="description" content="فروشگاه اینترنتی قطعات و لوازم جانبی خودرو" />
+        <meta name="robots" content="index, follow" />
+      </Head>
+      <PublicLayout>
+        <IndexPage props={props} />
+      </PublicLayout>
+    </>
   )
 }
 

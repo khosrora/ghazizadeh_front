@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useRef, useState } from 'react';
+import { buildURLQuery } from '../../../../utils/functions';
 
 
-function FilterModal({ categories }) {
+function FilterModal({ categories, query }) {
 
     const [list, setList] = useState(null);
 
@@ -13,17 +16,28 @@ function FilterModal({ categories }) {
         }
     }
 
+    const router = useRouter();
+    const closeRef = useRef()
+
+    const handleChangeFilter = id => {
+        delete query.category;
+        const params = buildURLQuery(Object.assign(query, { category: id }));
+        router.push(`/products?${params}`)
+        closeRef.current.click();
+    }
+
+
     return (
         <dialog id="my_modal_4" className="modal p-2">
             <form method="dialog" className="modal-box w-full h-5/6 bg-[#F8FAFA] p-0 relative">
                 <div className="flex justify-between items-center bg-[#FFFFFF] p-4 w-full">
                     <div className="flex justify-start items-center gap-x-2">
-                        <button className="btn btn-sm btn-circle btn-ghost">✕</button>
+                        <button ref={closeRef} className="btn btn-sm btn-circle btn-ghost">✕</button>
                         <span className='font-bold'>فیلتر</span>
                     </div>
-                    <div className="">
+                    <Link href='/products' className="">
                         <span>پاک کردن همه</span>
-                    </div>
+                    </Link>
                 </div>
 
                 <div className="flex flex-col p-4 w-full gap-y-4">
@@ -49,7 +63,7 @@ function FilterModal({ categories }) {
                                                     <div key={cateSub.id} className="flex mb-2">
                                                         <div className="form-control w-full">
                                                             <label className="cursor-pointer label justify-start items-center">
-                                                                <input type="checkbox" className="checkbox" dir='ltr' />
+                                                                <input type="radio" name="radio-1" className="radio" onChange={() => handleChangeFilter(cateSub.id)} />
                                                                 <span className="label-text mr-4">{cateSub.title}</span>
                                                             </label>
                                                         </div>
@@ -63,12 +77,7 @@ function FilterModal({ categories }) {
                         )
                     }
                 </div>
-                {/* <div className="flex justify-between items-center p-4 w-full gap-y-4">
-                    <p className='font-bold'>فقط کالا های موجود</p>
-                    <input type="checkbox" className="toggle toggle-success" />
-                </div> */}
             </form>
-            <div className="btn fixed bottom-2 left-2 right-2 bg-[#EA0028] text-white">اعمال فیلتر</div>
         </dialog>
     )
 }

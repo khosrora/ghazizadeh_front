@@ -8,7 +8,9 @@ import { errorMessage } from '../../utils/toast';
 const initialState = {
   loadAddress: false,
   address: [],
-  loadAddAddress: false
+  loadAddAddress: false,
+  orders: [],
+  loadOrders: false
 }
 
 export const getAddressUser = createAsyncThunk(
@@ -61,6 +63,22 @@ export const deleteAddress = createAsyncThunk(
   }
 )
 
+export const getOrdersUser = createAsyncThunk(
+  'dashboard/getOrdersUser', async (id) => {
+    try {
+      const token = Cookies.get('car_ghazizadeh');
+      const res = await http.get(`/store/order/`, {
+        headers: {
+          Authorization: "token " + token
+        }
+      })
+      return res.data
+    } catch (error) {
+      rejected()
+    }
+  }
+)
+
 
 
 
@@ -98,12 +116,23 @@ export const dashboardSlice = createSlice({
     })
     builder.addCase(deleteAddress.fulfilled, (state, action) => {
       state.loadAddress = false;
-      console.log(action.payload);
       state.address = state.address.filter(item => item.id !== action.payload)
       errorMessage('آدرس با موفقیت حذف شد')
     })
     builder.addCase(deleteAddress.rejected, (state) => {
       state.loadAddress = false;
+    })
+
+
+    builder.addCase(getOrdersUser.pending, (state) => {
+      state.loadOrders = true;
+    })
+    builder.addCase(getOrdersUser.fulfilled, (state, action) => {
+      state.loadOrders = false;
+      state.orders = action.payload
+    })
+    builder.addCase(getOrdersUser.rejected, (state) => {
+      state.loadOrders = false;
     })
 
 
@@ -115,3 +144,5 @@ export const dashboardSlice = createSlice({
 export const { } = dashboardSlice.actions
 
 export default dashboardSlice.reducer
+
+export const getDashboardState = (state) => state.dashboard;

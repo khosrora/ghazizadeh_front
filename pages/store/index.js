@@ -1,14 +1,26 @@
+import Head from 'next/head';
 import React from 'react'
 import PublicLayout from '../../components/layout/public'
 import StoreIndex from '../../components/pages/StorePage/StoreIndex'
 import { BASE_API } from '../../utils/baseApi';
 
 function index(props) {
-    
+
     return (
-        <PublicLayout>
-            <StoreIndex props={props} />
-        </PublicLayout>
+        <>
+            <Head>
+                <title>فروشگاه گروه خودرویی غازی زاده</title>
+                <meta property="url" content="https://ghazizadeh.co/store" />
+                <meta property="og:type" content="website" />
+                <meta property="og:locale" content="fa_IR" />
+                <meta property="og:site_name" content="فروشکاه قطعات خودرو" />
+                <meta name="description" content="فروشگاه اینترنتی قطعات و لوازم جانبی خودرو" />
+                <meta name="robots" content="index, follow" />
+            </Head>
+            <PublicLayout>
+                <StoreIndex props={props} />
+            </PublicLayout>
+        </>
     )
 }
 
@@ -25,7 +37,7 @@ export async function getServerSideProps() {
         props: {
             banners,
             categories,
-            latestProduct : latestProduct.results
+            latestProduct: latestProduct.results
         }
     }
 }

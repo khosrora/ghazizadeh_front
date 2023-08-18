@@ -27,11 +27,12 @@ export default function GalleryImage({ images }) {
         {
           images.map(image =>
             <SwiperSlide key={image.id}>
-                <img className=" "
-                  src={image.image}
-                  width='100'
-                  height='100'
-                />
+              <img className=" "
+                src={image.image}
+                width='100'
+                height='100'
+                alt={images.title}
+              />
             </SwiperSlide>
           )
         }
@@ -50,7 +51,11 @@ export default function GalleryImage({ images }) {
             <SwiperSlide key={image.id} className="swiper-slide2">
               <img
                 src={image.image}
-                className='object-center object-cover' />
+                className='object-center object-cover'
+                width='50'
+                height='50'
+                alt={images.title}
+              />
             </SwiperSlide>
           )
         }

@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { getBasketState } from '../../../../store/basket/BasketSlice';
@@ -10,6 +11,9 @@ function DetailsFinallyPage({ addressId, postsType }) {
 
     const { basket } = useSelector(getBasketState);
     const { userDetails } = useSelector(getUserState);
+
+    const router = useRouter();
+
     const [total, setTotal] = useState()
     const [postId, setPostId] = useState(postsType[0].id);
     const [postPrice, setPostPrice] = useState(postsType[0].price);
@@ -28,7 +32,7 @@ function DetailsFinallyPage({ addressId, postsType }) {
         if (!addressId) return errorMessage('حداقل یک آدرس انتخاب کنید');
         let data = {
             items: basket,
-            total_price: total,
+            total_price: total + parseInt(postPrice),
             phone: userDetails.phone,
             address: addressId,
             payment_method: postId
@@ -39,7 +43,13 @@ function DetailsFinallyPage({ addressId, postsType }) {
             const res = await http.post('/store/place_order', data, {
                 headers: { Authorization: 'token ' + token }
             });
-            console.log(res.data);
+            const url = res.data.detail;
+            if (res.status === 201) {
+                router.replace(url)
+            } else {
+                errorMessage('لطفا دوباره امتحان کنید')
+            }
+
         } catch (error) {
             errorMessage('لطفا دوباره امتحان کنید')
         }
@@ -56,7 +66,7 @@ function DetailsFinallyPage({ addressId, postsType }) {
             <hr />
             {
                 postsType.map(post =>
-                    <div className="flex justify-between items-center">
+                    <div key={post.id} className="flex justify-between items-center">
                         <div className="flex justify-start items-center gap-x-4">
                             <input type="radio" name="radio-9" className="radio checked:bg-red-500" checked={postId === post.id ? true : false} onChange={() => {
                                 setPostId(post.id)

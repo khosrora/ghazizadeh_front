@@ -12,7 +12,7 @@ const TitleSection = ({ title, url, span }) => {
                 !!span ?
                     null
                     :
-                    <Link href={`${url}`}>
+                    <Link title={title} href={`${url}`}>
                         <span className="text-[#1A858C]"> مشاهده همه </span>
                     </Link>
             }

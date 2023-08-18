@@ -1,8 +1,10 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react'
+import { buildURLQuery } from '../../../utils/functions';
 import Search from '../../sharedUi/Search'
 
 
-function SearchPageSideBar({ categories }) {
+function SearchPageSideBar({ categories, query }) {
 
     const [list, setList] = useState(null);
     const [search, setSearch] = useState('')
@@ -15,6 +17,13 @@ function SearchPageSideBar({ categories }) {
         }
     }
 
+    const router = useRouter();
+
+    const handleChangeFilter = id => {
+        delete query.category;
+        const params = buildURLQuery(Object.assign(query, { category: id }));
+        router.push(`/products?${params}`)
+    }
 
     return (
         <div className='bg-[#FFFFFF] h-full w-full rounded-xl p-4'>
@@ -46,7 +55,7 @@ function SearchPageSideBar({ categories }) {
                                                 <div div key={cateSub.id} className="flex mb-2" >
                                                     <div className="form-control w-full">
                                                         <label className="cursor-pointer label justify-start items-center">
-                                                            <input type="checkbox" className="checkbox" dir='ltr' />
+                                                            <input type="radio" name="radio-1" className="radio" onChange={() => handleChangeFilter(cateSub.id)} />
                                                             <span className="label-text mr-4">{cateSub.title}</span>
                                                         </label>
                                                     </div>
@@ -64,7 +73,7 @@ function SearchPageSideBar({ categories }) {
                 <p className='font-bold'>فقط کالا های موجود</p>
                 <input type="checkbox" className="toggle toggle-success" />
             </div> */}
-            <div className="btn w-full bg-[#EA0028] text-white">اعمال فیلتر</div>
+            {/* <div className="btn w-full bg-[#EA0028] text-white">اعمال فیلتر</div> */}
         </div >
     )
 }

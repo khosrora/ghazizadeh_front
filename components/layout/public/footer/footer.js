@@ -35,37 +35,37 @@ const Footer = () => {
                         <li>
                             <span className="font-bold text-[16px]">دسترسی ها</span>
                         </li>
-                        <li>
+                        <li className="mt-4">
                             <Link href='/'>
                                 <span className="text-[14px] text-[#444444]"> خانه </span>
                             </Link>
                         </li>
-                        <li>
+                        <li className="mt-4">
                             <Link href='/about_us'>
                                 <span className="text-[14px] text-[#444444]"> درباره ما </span>
                             </Link>
                         </li>
-                        <li>
+                        <li className="mt-4">
                             <Link href='/contact_us'>
                                 <span className="text-[14px] text-[#444444]"> ارتباط با ما </span>
                             </Link>
                         </li>
-                        <li>
+                        <li className="mt-4">
                             <Link href='/store'>
                                 <span className="text-[14px] text-[#444444]"> فروشگاه </span>
                             </Link>
                         </li>
-                        <li>
+                        <li className="mt-4">
                             <Link href='/all_cars'>
                                 <span className="text-[14px] text-[#444444]"> معرفی خودرو ها </span>
                             </Link>
                         </li>
                     </ul>
                     <ul>
-                        <li>
+                        <li className="mt-4">
                             <span className="font-bold text-[16px]">خدمات مشتریان</span>
                         </li>
-                        <li>
+                        <li className="mt-4">
                             <Link href='/terms'>
                                 <span className="text-[14px] text-[#444444]"> شرایط و قوانین </span>
                             </Link>
