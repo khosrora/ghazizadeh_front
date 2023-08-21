@@ -6,6 +6,7 @@ import 'swiper/css';
 import BtnAddToBasket from '../../sharedUi/BtnAddToBasket';
 import TitleSection from '../../sharedUi/TitleSection';
 import BtnSwipper from '../../sharedUi/BtnSwipper';
+import Link from 'next/link';
 
 function NewProduct({ latestProducts }) {
 
@@ -42,8 +43,8 @@ function NewProduct({ latestProducts }) {
                 >
                     {
                         latestProducts.map(i =>
-                            <SwiperSlide key={i}>
-                                <div className="bg-[#F8F9FA] rounded-xl">
+                            <SwiperSlide key={i.id}>
+                                <Link href={`/products/${i.id}`} className="bg-[#F8F9FA] rounded-xl">
                                     <figure className="p-2 h-[140px] md:h-[160px] lg:h-[220px]">
                                         <img
                                             src={i.gallery[0].image}                                            
@@ -58,7 +59,7 @@ function NewProduct({ latestProducts }) {
                                             <BtnAddToBasket product={i} />
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             </SwiperSlide>
                         )
                     }

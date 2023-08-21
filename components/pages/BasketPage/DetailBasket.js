@@ -1,22 +1,36 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { getBasketState } from './../../../store/basket/BasketSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { errorMessage } from '../../../utils/toast';
+import { checkDiscountCode, getBasketState } from './../../../store/basket/BasketSlice'
 
 function DetailBasket() {
 
-    const { basket } = useSelector(getBasketState);
+    const dispatch = useDispatch();
+
+    const [discount, setDiscount] = useState()
     const [total, setTotal] = useState()
+
+    const { basket , percentage } = useSelector(getBasketState);
+
+    const handleDiscount = code => {
+        if (!code) return errorMessage('ابتدا کد تخفیف را وارد کنید');
+        dispatch(checkDiscountCode(code))
+    }
 
     useEffect(() => {
         const getTotal = () => {
             const total = basket.reduce((prev, item) => {
                 return prev + (item.price * item.count)
             }, 0)
-            setTotal(total);
+            if (percentage !== null) {
+                setTotal(total - (total * percentage) / 100);
+            } else {
+                setTotal(total);
+            }
         }
         getTotal()
-    }, [basket])
+    }, [basket , percentage])
 
     return (
         <div className='space-y-4'>
@@ -29,9 +43,12 @@ function DetailBasket() {
                 <p className=''>کد تخفیف</p>
                 <div className="flex justify-between items-start w-full mt-2 gap-x-4">
                     <div className="bg-[#FFFFFF] rounded-full overflow-hidden relative w-3/4">
-                        <input type="text" className='text-xs p-4 w-full focus:outline-none' placeholder='کد تخفیف را وارد کنید' name="" id="" />
+                        <input onChange={(e) => setDiscount(e.target.value)} type="text" className='text-xs p-4 w-full focus:outline-none' placeholder='کد تخفیف را وارد کنید' name="" id="" />
                     </div>
-                    <button className="btn w-1/3 text-xs border border-[#EB430C] bg-[#FFFFFF] rounded-full text-center">
+                    <button onClick={(e) => {
+                        e.preventDefault()
+                        handleDiscount(discount)
+                    }} className="btn w-1/3 text-xs border border-[#EB430C] bg-[#FFFFFF] rounded-full text-center">
                         <p className='text-[#EB430C]'>اعمال</p>
                     </button>
                 </div>

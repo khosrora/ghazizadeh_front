@@ -62,7 +62,7 @@ const Footer = () => {
                         </li>
                     </ul>
                     <ul>
-                        <li className="mt-4">
+                        <li className="">
                             <span className="font-bold text-[16px]">خدمات مشتریان</span>
                         </li>
                         <li className="mt-4">
@@ -72,7 +72,7 @@ const Footer = () => {
                         </li>
                     </ul>
                 </li>
-                <li>
+                {/* <li>
                     <span className="font-bold text-[16px]">راه های ارتباطی</span>
                     <ul className="flex gap-x-4 justify-start items-center mt-2">
                         {
@@ -100,7 +100,7 @@ const Footer = () => {
                         }
 
                     </ul>
-                </li>
+                </li> */}
                 <li className="flex justify-start items-center gap-x-4">
                     {/* <div className="border rounded-xl justify-center items-center p-4">
                         <Image

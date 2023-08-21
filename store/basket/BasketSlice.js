@@ -7,7 +7,10 @@ import { errorMessage, successMessage } from '../../utils/toast';
 export let BasketName = 'gh_basket'
 
 const initialState = {
-  basket: []
+  basket: [],
+  percentage: null,
+  discountId: null,
+  load: false
 }
 
 export const getBlogs = createAsyncThunk(
@@ -15,6 +18,20 @@ export const getBlogs = createAsyncThunk(
     try {
 
       const res = await http.get(link)
+      return res.data
+    } catch (error) {
+      rejected()
+    }
+  }
+)
+
+export const checkDiscountCode = createAsyncThunk(
+  'blogs/checkDiscountCode', async (code) => {
+    try {
+      const token = Cookies.get('car_ghazizadeh');
+      const res = await http.get(`/discount/get_code/${code}`, {
+        headers: { Authorization: "token " + token }
+      })
       return res.data
     } catch (error) {
       rejected()
@@ -77,7 +94,20 @@ export const BasketSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-
+    builder.addCase(checkDiscountCode.pending, (state) => {
+      state.load = true
+    })
+    builder.addCase(checkDiscountCode.fulfilled, (state, action) => {
+      state.load = true;
+      state.percentage = action.payload.percentage;
+      state.discountId = action.payload.id;
+      successMessage('کد تخفیف اعمال شد')
+    })
+    builder.addCase(checkDiscountCode.rejected, (state) => {
+      state.load = false;
+      state.percentage = null;
+      errorMessage('کد وارد شده معتبر نمی باشد')
+    })
   }
 
 })

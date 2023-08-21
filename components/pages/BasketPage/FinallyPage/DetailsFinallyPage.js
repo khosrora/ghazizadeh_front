@@ -9,7 +9,7 @@ import http from './../../../../utils/httpService'
 
 function DetailsFinallyPage({ addressId, postsType }) {
 
-    const { basket } = useSelector(getBasketState);
+    const { basket, percentage , discountId } = useSelector(getBasketState);
     const { userDetails } = useSelector(getUserState);
 
     const router = useRouter();
@@ -23,7 +23,11 @@ function DetailsFinallyPage({ addressId, postsType }) {
             const total = basket.reduce((prev, item) => {
                 return prev + (item.price * item.count)
             }, 0)
-            setTotal(total);
+            if (percentage !== null) {
+                setTotal(total - (total * percentage) / 100);
+            } else {
+                setTotal(total);
+            }
         }
         getTotal()
     }, [basket])
@@ -35,9 +39,9 @@ function DetailsFinallyPage({ addressId, postsType }) {
             total_price: total + parseInt(postPrice),
             phone: userDetails.phone,
             address: addressId,
-            payment_method: postId
+            payment_method: postId ,
+            discount : discountId
         }
-
         try {
             const token = Cookies.get('car_ghazizadeh')
             const res = await http.post('/store/place_order', data, {
