@@ -45,18 +45,20 @@ function NewProduct({ latestProducts }) {
                         latestProducts.map(i =>
                             <SwiperSlide key={i.id}>
                                 <Link href={`/products/${i.id}`} className="bg-[#F8F9FA] rounded-xl">
-                                    <figure className="p-2 h-[140px] md:h-[160px] lg:h-[220px]">
-                                        <img
-                                            src={i.gallery[0].image}                                            
-                                            alt="Shoes"
-                                            className="rounded-xl object-contain" />
-                                    </figure>
-                                    <div className="card-body text-right w-full ">
-                                        <h2 className="card-title font-bold text-[14px]">{i.brand.title}</h2>
-                                        <p className="card-title font-bold text-[12px]">{i.title}</p>
-                                        <div className="card-actions flex justify-between items-center">
-                                            <span className='text-[12px]'>{new Intl.NumberFormat().format(i.price)} <span className='text-[8px]'>تومان</span></span>
-                                            <BtnAddToBasket product={i} />
+                                    <div className="bg-[#F8F9FA] rounded-xl">
+                                        <figure className="p-2 h-[140px] md:h-[160px] lg:h-[220px]">
+                                            <img
+                                                src={i.gallery[0].image}
+                                                alt="Shoes"
+                                                className="rounded-xl object-contain" />
+                                        </figure>
+                                        <div className="card-body text-right w-full ">
+                                            <h2 className="card-title font-bold text-[14px]">{i.brand.title}</h2>
+                                            <p className="card-title font-bold text-[12px]">{i.title}</p>
+                                            <div className="card-actions flex justify-between items-center">
+                                                <span className='text-[12px]'>{new Intl.NumberFormat().format(i.price)} <span className='text-[8px]'>تومان</span></span>
+                                                <BtnAddToBasket product={i} />
+                                            </div>
                                         </div>
                                     </div>
                                 </Link>

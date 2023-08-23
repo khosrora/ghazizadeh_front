@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addToBasket } from '../../../store/basket/BasketSlice'
 import DescriptionSingleProduct from './DescriptionSingleProduct'
@@ -9,15 +9,15 @@ import SuggestProduct from './SuggestProduct'
 
 function SingleProduct({ props }) {
 
+    const [domain, setDomain] = useState(props.product.domain)
+    
     const { product } = props;
-
     const dispatch = useDispatch();
 
     const handleAddToBasket = (e) => {
         e.preventDefault();
         dispatch(addToBasket(product))
     }
-
     return (
         <>
             <div className='p-4'>
@@ -41,7 +41,7 @@ function SingleProduct({ props }) {
             </div>
             {
                 product.relational_products.length === 0 ? null :
-                    <SuggestProduct relationalProducts={product.relational_products} />
+                    <SuggestProduct domain={domain} relationalProducts={product.relational_products} />
             }
         </>
     )

@@ -4,7 +4,7 @@ import BannerStore from './BannerStore'
 import CarAccessories from '../HomePage/CarAccessories'
 import AccessoriesMe from '../HomePage/AccessoriesMe'
 import NewProduct from './NewProduct'
-import PopularrStore from './PopularrStore'
+// import PopularrStore from './PopularrStore'
 import Categories from '../HomePage/Categories'
 
 

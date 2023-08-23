@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import DescriptionSingleCar from './DescriptionSingleCar'
 import DetailsSingleProduct from './DetailsSingleProduct'
@@ -28,7 +29,7 @@ function SingleCar({ car }) {
                         <div className="">
                             {/* <p>{car.brand.title}</p> */}
                         </div>
-                        <div className="btn bg-[#EA0028] rounded-full w-full text-white">تماس با ما</div>
+                        <Link href='/contact_us' className="btn bg-[#EA0028] rounded-full w-full text-white">تماس با ما</Link>
                         <br />
                         <p className='text-xs text-[#EA0028]'>
                             به علت نوسانات بازار قیمت محصولات نمایش داده نمی شود و برای اطلاع از قیمت ها با ما تماس بگیرید

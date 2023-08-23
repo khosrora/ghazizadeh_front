@@ -6,10 +6,12 @@ import 'swiper/css';
 import BtnAddToBasket from '../../sharedUi/BtnAddToBasket';
 import TitleSection from '../../sharedUi/TitleSection';
 import BtnSwipper from '../../sharedUi/BtnSwipper';
+import Link from 'next/link';
 
-function SuggestProduct({ relationalProducts }) {
+function SuggestProduct({ domain, relationalProducts }) {
 
     const swiperRef = useRef();
+    console.log(domain);
 
     return (
 
@@ -40,24 +42,28 @@ function SuggestProduct({ relationalProducts }) {
                     }}
                 >
                     {
-                        relationalProducts.map(i =>
-                            <SwiperSlide key={i}>
-                                <div className="bg-[#F8F9FA] rounded-xl">
-                                    <figure className="p-2 h-[140px] md:h-[160px] lg:h-[220px]">
-                                        <img
-                                            src="https://multimedia.bbycastatic.ca/multimedia/products/500x500/153/15318/15318081.jpg"
-                                            alt="Shoes"
-                                            className="rounded-xl object-contain" />
-                                    </figure>
-                                    <div className="card-body text-right w-full ">
-                                        <h2 className="card-title font-bold text-[14px]">لیفان</h2>
-                                        <p className="card-title font-bold text-[12px]">فرمون خودرو مدل TRETTF2</p>
-                                        <div className="card-actions flex justify-between items-center">
-                                            <span className='text-[12px]'>200/000 <span className='text-[8px]'>تومان</span></span>
-                                            <BtnAddToBasket />
+                        relationalProducts.map(product =>
+                            <SwiperSlide key={product.id}>
+                                <Link href={`/products/${product.id}`}>
+                                    <div className="bg-white rounded-xl">
+                                        <figure className="p-2 h-[140px] md:h-[160px] lg:h-[220px]">
+                                            <img
+                                                src={domain + product.gallery[0].image}
+                                                alt={product.title}
+                                                width="200"
+                                                height="200"
+                                                className="rounded-xl object-cover object-center h-full w-full " />
+                                        </figure>
+                                        <div className="card-body text-right w-full ">
+                                            <h2 className="card-title font-bold text-[14px]">{product.title}</h2>
+                                            <p className="card-title font-bold text-[12px]">فرمون خودرو مدل TRETTF2</p>
+                                            <div className="card-actions flex justify-between items-center">
+                                                <span className='text-[12px]'>{new Intl.NumberFormat().format(product.price)} <span className='text-[8px]'>تومان</span></span>
+                                                {/* <BtnAddToBasket product={product} /> */}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             </SwiperSlide>
                         )
                     }
