@@ -33,7 +33,7 @@ function DetailsFinallyPage({ addressId, postsType }) {
     }, [basket])
 
     const handleGetPayment = async () => {
-        if (!addressId) return errorMessage('حداقل یک آدرس انتخاب کنید');
+        if (!addressId) return errorMessage('یک آدرس انتخاب کنید');
         let data = {
             items: basket,
             total_price: total + parseInt(postPrice),
@@ -55,7 +55,7 @@ function DetailsFinallyPage({ addressId, postsType }) {
             }
 
         } catch (error) {
-            errorMessage('لطفا دوباره امتحان کنید')
+            errorMessage(error.response.data.message)
         }
 
     }
