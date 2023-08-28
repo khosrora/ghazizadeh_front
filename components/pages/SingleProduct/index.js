@@ -18,6 +18,7 @@ function SingleProduct({ props }) {
         e.preventDefault();
         dispatch(addToBasket(product))
     }
+
     return (
         <>
             <div className='p-4'>
@@ -27,7 +28,7 @@ function SingleProduct({ props }) {
                         <GalleryImage images={product.gallery} />
                     </div>
                     <div className="lg:col-span-1">
-                        <DescriptionSingleProduct specs={product.specs} title={product.title} />
+                        <DescriptionSingleProduct technicalNumber={product.technical_number} specs={product.specs} title={product.title} />
                     </div>
                     <div className="lg:col-span-1 space-y-4 mt-4 lg:mt-0">
                         <div className="flex justify-between items-center">

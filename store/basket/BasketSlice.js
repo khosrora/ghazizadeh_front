@@ -59,6 +59,7 @@ export const BasketSlice = createSlice({
           image_url: product.gallery[0].image,
           price: product.price,
           brand: product.brand.title,
+          technical_number : product.technical_number , 
           count: 1
         }
         const res = JSON.parse(Cookies.get(BasketName))
