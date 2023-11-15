@@ -8,9 +8,10 @@ import { getCode } from '../../../../store/user/UserSlice'
 
 
 
-function GetPhone({ load }) {
+function GetPhone({ load, closeBtn }) {
 
     const dispatch = useDispatch();
+
 
     const {
         register,
@@ -24,7 +25,7 @@ function GetPhone({ load }) {
 
     return (
         <form method="dialog" className="modal-box  bg-[#F8F9FA]" onSubmit={handleSubmit(onSubmit)}>
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            <button onClick={() => closeBtn.current.click()} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             <div className="w-full mt-8 flex flex-col justify-center items-center gap-y-6">
                 <Logo />
                 <div className="w-full p-2 text-right flex flex-col gap-y-8">

@@ -26,7 +26,7 @@ export default function GalleryImage({ gallery, image }) {
         className="mySwiper2 swiper-slide2 rounded-md"
       >
         <SwiperSlide>
-          <img className="object-cover" src={image} alt={image.title} />
+          <img className="object-cover h-full items-center" src={image} alt={image.title} />
         </SwiperSlide>
         {
           gallery.map(image =>

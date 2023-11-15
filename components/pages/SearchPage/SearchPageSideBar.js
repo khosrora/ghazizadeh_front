@@ -46,9 +46,9 @@ function SearchPageSideBar({ categories, query }) {
                             {
                                 list === cate.id ?
                                     <>
-                                        <div className="my-2">
+                                        {/* <div className="my-2">
                                             <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder='جست و جو کنید ... ' className='bg-[#FFFFFF] w-full p-2 text-xs rounded-full' />
-                                        </div>
+                                        </div> */}
                                         {
 
                                             cate.subs.map(cateSub =>
