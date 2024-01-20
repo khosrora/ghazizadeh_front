@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBlogs } from "../../../store/blogs/BlogsSlice";
 
 
-   
+
 
 const BlogSection = () => {
 
@@ -66,7 +66,7 @@ const BlogSection = () => {
                                         </h2>
                                         <Link alt={i.title} href={`/blogs/${i.slug}`}>
                                             <div className="card-actions">
-                                                <span className="btn bg-[#FFFFFF] w-full text-[#EA0028] rounded-full text-[12px]">مشاهده محصولات</span>
+                                                <span className="btn bg-[#FFFFFF] w-full text-[#EA0028] rounded-full text-[12px]">مشاهده بیشتر</span>
                                             </div>
                                         </Link>
                                     </div>

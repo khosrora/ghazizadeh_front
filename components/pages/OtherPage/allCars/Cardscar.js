@@ -50,7 +50,7 @@ function Cardscar({ nextPage, hasMore, setHasMore, count }) {
                                                 <Link href={`/all_cars/${car.id}`}>
                                                     <div className="card-actions btn text-white rounded-full text-center bg-[#FFFFFF] flex justify-center items-center">
                                                         <div className="card-actions w-full flex justify-center items-center">
-                                                            <span className="text-[#EA0028] text-[12px]">مشاهده محصولات</span>
+                                                            <span className="text-[#EA0028] text-[12px]">مشاهده</span>
                                                         </div>
                                                     </div>
                                                 </Link>

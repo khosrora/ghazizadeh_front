@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addToBasket } from '../../../store/basket/BasketSlice'
+import { errorMessage } from '../../../utils/toast'
 import DescriptionSingleProduct from './DescriptionSingleProduct'
 import DetailsSingleProduct from './DetailsSingleProduct'
 import GalleryImage from './GalleryImage'
@@ -9,14 +10,20 @@ import SuggestProduct from './SuggestProduct'
 
 function SingleProduct({ props }) {
 
+    const { user } = useSelector(state => state)
     const [domain, setDomain] = useState(props.product.domain)
-    
+
+    const userDetails = user.userDetails;
     const { product } = props;
     const dispatch = useDispatch();
 
     const handleAddToBasket = (e) => {
-        e.preventDefault();
-        dispatch(addToBasket(product))
+        if (!!userDetails) {
+            e.preventDefault();
+            dispatch(addToBasket(product))
+        } else {
+            errorMessage('ابتدا وارد وب سایت شوید')
+        }
     }
 
     return (

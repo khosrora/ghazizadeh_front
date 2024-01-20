@@ -9,7 +9,7 @@ function BlogsIndex() {
 
     const [hasMore, setHasMore] = useState(true)
     const dispatch = useDispatch();
-    const { loadBlogs, blogs, next,  count } = useSelector(state => state.blogs)
+    const { loadBlogs, blogs, next, count } = useSelector(state => state.blogs)
 
     useEffect(() => {
         dispatch(getBlogs('/blog/blogs'));
@@ -93,7 +93,7 @@ function BlogsIndex() {
                                                 </h2>
                                                 <Link alt={i.title} href={`/blogs/${i.slug}`}>
                                                     <div className="card-actions">
-                                                        <span className="btn bg-[#FFFFFF] w-full text-[#EA0028] rounded-full text-[12px]">مشاهده محصولات</span>
+                                                        <span className="btn bg-[#FFFFFF] w-full text-[#EA0028] rounded-full text-[12px]">مشاهده بیشتر</span>
                                                     </div>
                                                 </Link>
                                             </div>
